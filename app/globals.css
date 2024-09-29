@@ -5,14 +5,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --form-background: #f1f1f100;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
+.dark {
+    --background: #252525;
     --foreground: #ededed;
-  }
+    --form-background: #575757;
 }
+
 
 html,body {
   height: 100%;
@@ -22,6 +23,10 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-container {
+  background-color: var(--form-background);
 }
 
 @layer utilities {

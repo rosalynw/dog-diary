@@ -43,116 +43,139 @@ export default function ReminderForm() {
   }
 
   return (
-      <div className="form-container flex flex-col place-items-center bg-gray-100 p-6 rounded-lg shadow-lg">
-        <h1 className="font-bold text-4xl">Dog Info</h1>
-        <form onSubmit={handleSubmit}>
-          <div className="space-y-4">
+      <div className="form-container flex flex-col py-6 px-12 rounded-lg shadow-lg"> 
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <h1 className="font-bold text-4xl">New Reminder</h1>
+          <div>
+            <div>
             <label htmlFor="title">Title:</label>
-            <input
-              type="text"
-              id="title"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              required
-              />
+            <div>
+              <input className="border-0 bg-transparent px-2 focus:outline-none"
+                type="text"
+                id="title"
+                name="title"
+                value={formData.title}
+                onChange={handleChange}
+                placeholder="Sparky's Flea Meds"
+                required
+                />
+            </div>
+            </div>
           </div>
           
           <div>
-            <label htmlFor="medicineName">Medicine Name:</label>
-            <input
-              type="text"
-              id="medicineName"
-              name="medicineName"
-              value={formData.medicineName}
-              onChange={handleChange}
-              required
-              />
+            <div>
+              <label htmlFor="medicineName">Medicine Name:</label>
+            <div>
+              <input className="border-0 bg-transparent focus:outline-none"
+                type="text"
+                id="medicineName"
+                name="medicineName"
+                value={formData.medicineName}
+                onChange={handleChange}
+                placeholder="Flea/Tick Medicine"
+                required
+                />
+            </div>
+            </div>
           </div>
+
           <div>
-            <label htmlFor="administerTime">Administer Time:</label>
+            <div><label htmlFor="administerTime">Administer Time:</label>
+            <div>
+              <input
+                type="time"
+                id="administerTime"
+                name="administerTime"
+                value={formData.administerTime}
+                onChange={handleChange}
+                required
+                />
+            </div>
+            </div>
+          </div>
+
+          <div>
+          <label>Days of the Week:</label>
+          <div className="dayContainer grid grid-cols-1 gap-1">
+          <div className="flex justify-between">
+            <label>Sunday</label>
             <input
-              type="time"
-              id="administerTime"
-              name="administerTime"
-              value={formData.administerTime}
-              onChange={handleChange}
-              required
+                type="checkbox"
+                name="daysOfWeek"
+                value="Sunday"
+                checked={formData.daysOfWeek.includes('Sunday')}
+                onChange={handleChange}
               />
           </div>
 
-          <div className="flex flex-col">
-          <label>Days of the Week:</label>
-          <label>
+          <div className="flex justify-between">
+            <label>Monday</label>
             <input
-              type="checkbox"
-              name="daysOfWeek"
-              value="Monday"
-              checked={formData.daysOfWeek.includes('Monday')}
-              onChange={handleChange}
-            />
-            Monday
-          </label>
-          <label>
+                type="checkbox"
+                name="daysOfWeek"
+                value="Monday"
+                checked={formData.daysOfWeek.includes('Monday')}
+                onChange={handleChange}
+              />
+          </div>
+
+
+          <div className="flex justify-between">
+            <label>Tuesday</label>
             <input
-              type="checkbox"
-              name="daysOfWeek"
-              value="Tuesday"
-              checked={formData.daysOfWeek.includes('Tuesday')}
-              onChange={handleChange}
-            />
-            Tuesday
-          </label>
-          <label>
+                type="checkbox"
+                name="daysOfWeek"
+                value="Tuesday"
+                checked={formData.daysOfWeek.includes('Tuesday')}
+                onChange={handleChange}
+              />
+          </div>
+
+          <div className="flex justify-between">
+            <label>Wednesday</label>
             <input
-              type="checkbox"
-              name="daysOfWeek"
-              value="Wednesday"
-              checked={formData.daysOfWeek.includes('Wednesday')}
-              onChange={handleChange}
-            />
-            Wednesday
-          </label>
-          <label>
+                type="checkbox"
+                name="daysOfWeek"
+                value="Wednesday"
+                checked={formData.daysOfWeek.includes('Wednesday')}
+                onChange={handleChange}
+              />
+          </div>
+
+          <div className="flex justify-between">
+            <label>Thursday</label>
             <input
-              type="checkbox"
-              name="daysOfWeek"
-              value="Thursday"
-              checked={formData.daysOfWeek.includes('Thursday')}
-              onChange={handleChange}
-            />
-            Thursday
-          </label>
-          <label>
+                type="checkbox"
+                name="daysOfWeek"
+                value="Thursday"
+                checked={formData.daysOfWeek.includes('Thursday')}
+                onChange={handleChange}
+              />
+          </div>
+
+          <div className="flex justify-between">
+            <label>Friday</label>
             <input
-              type="checkbox"
-              name="daysOfWeek"
-              value="Friday"
-              checked={formData.daysOfWeek.includes('Friday')}
-              onChange={handleChange}
-            />
-            Friday
-          </label>
-          <label>
+                type="checkbox"
+                name="daysOfWeek"
+                value="Friday"
+                checked={formData.daysOfWeek.includes('Friday')}
+                onChange={handleChange}
+              />
+          </div>
+
+          <div className="flex justify-between">
+            <label>Saturday</label>
             <input
-              type="checkbox"
-              name="daysOfWeek"
-              value="Saturday"
-              checked={formData.daysOfWeek.includes('Saturday')}
-              onChange={handleChange}
-            />
-            Saturday
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              name="daysOfWeek"
-              value="Sunday"
-              checked={formData.daysOfWeek.includes('Sunday')}
-              onChange={handleChange}
-            />
-            Sunday
-          </label>
+                type="checkbox"
+                name="daysOfWeek"
+                value="Saturday"
+                checked={formData.daysOfWeek.includes('Saturday')}
+                onChange={handleChange}
+              />
+          </div>
+        </div>
         </div>
  
           <div>
