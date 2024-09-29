@@ -54,7 +54,7 @@ export default function NewReminder({addReminder}) {
           <h1 className="font-bold text-4xl">New Reminder</h1>
           <div>
             <div>
-            <label htmlFor="title">Title:</label>
+            <label htmlFor="title" className="font-semibold">Title</label>
             <div className="border rounded bg-slate-200">
               <input className="border-0 bg-transparent p-1 focus:outline-none w-full"
                 id="title"
@@ -71,7 +71,7 @@ export default function NewReminder({addReminder}) {
           
           <div>
             <div>
-              <label htmlFor="medicineName">Medicine Name:</label>
+              <label htmlFor="medicineName" className="font-semibold">Medicine Name</label>
             <div className="border rounded bg-slate-200">
               <input className="border-0 bg-transparent p-1 focus:outline-none"
                 id="medicineName"
@@ -88,7 +88,7 @@ export default function NewReminder({addReminder}) {
 
           <div>
             <div className="flex justify-between">
-              <label htmlFor="administerTime">Administer Time:</label>
+              <label htmlFor="administerTime" className="font-semibold">Administer Time:</label>
             <div className="border rounded bg-slate-200">
               <input className="border-0 bg-transparent p-1 focus:outline-none w-full"
                 id="administerTime"
@@ -103,7 +103,7 @@ export default function NewReminder({addReminder}) {
           </div>
 
           <div className="w-full">
-          <div>Days of the Week:</div>
+          <div className="font-semibold">Days of the Week</div>
           <div className="dayContainer grid grid-cols-1 gap-1 border border-gray-400 rounded-lg">
           <div className="flex justify-between border-b w-full p-2">
             <label htmlFor="checkbox">Sunday</label>
@@ -206,7 +206,7 @@ export default function NewReminder({addReminder}) {
         </div>
 
         <div className="flex justify-end space-x-5">
-          <button type="submit" className="font-semibold bg-green-500 hover:bg-green-700 rounded-full py-2 px-6">Submit</button>
+          <button type="submit" className="font-semibold bg-bermuda hover:bg-green-700 rounded-full py-2 px-6">Submit</button>
           <button type="button" className="font-semibold">Cancel</button>
         </div>
       </form>
