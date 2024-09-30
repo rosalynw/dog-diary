@@ -1,5 +1,6 @@
 'use client'
 
+import DaysOfWeekSelector from './DaysofWeekSelector';
 import { useState } from "react";
 
 export default function NewReminder({addReminder, onCancel}) {
@@ -103,94 +104,10 @@ export default function NewReminder({addReminder, onCancel}) {
             </div>
           </div>
 
-          <div className="w-full">
-          <div className="font-semibold">Days of the Week</div>
-          <div className="dayContainer grid grid-cols-1 gap-1 border border-gray-400 rounded-lg">
-          <div className="flex justify-between border-b w-full p-2">
-            <label htmlFor="checkbox">Sunday</label>
-            <input className="w-4 h-4"
-              id="checkbox"
-              type="checkbox"
-              name="daysOfWeek"
-              value="Sunday"
-              checked={formData.daysOfWeek.includes('Sunday')}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="flex justify-between border-b w-full p-2">
-            <label htmlFor="checkbox">Monday</label>
-            <input className="w-4 h-4"
-              id="checkbox"
-              type="checkbox"
-              name="daysOfWeek"
-              value="Monday"
-              checked={formData.daysOfWeek.includes('Monday')}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="flex justify-between border-b w-full p-2">
-            <label htmlFor="checkbox">Tuesday</label>
-            <input className="w-4 h-4"
-              id="checkbox"
-              type="checkbox"
-              name="daysOfWeek"
-              value="Tuesday"
-              checked={formData.daysOfWeek.includes('Tuesday')}
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="flex justify-between border-b w-full p-2">
-            <label htmlFor="checkbox">Wednesday</label>
-            <input className="w-4 h-4"
-              id="checkbox"
-                type="checkbox"
-                name="daysOfWeek"
-                value="Wednesday"
-                checked={formData.daysOfWeek.includes('Wednesday')}
-                onChange={handleChange}
-              />
-          </div>
-
-          <div className="flex justify-between border-b w-full p-2">
-            <label htmlFor="checkbox">Thursday</label>
-            <input className="w-4 h-4"
-              id="checkbox"
-                type="checkbox"
-                name="daysOfWeek"
-                value="Thursday"
-                checked={formData.daysOfWeek.includes('Thursday')}
-                onChange={handleChange}
-              />
-          </div>
-
-          <div className="flex justify-between border-b w-full p-2">
-            <label htmlFor="checkbox">Friday</label>
-            <input className="w-4 h-4"
-              id="checkbox"
-                type="checkbox"
-                name="daysOfWeek"
-                value="Friday"
-                checked={formData.daysOfWeek.includes('Friday')}
-                onChange={handleChange}
-              />
-          </div>
-
-          <div className="flex justify-between border-b w-full p-2">
-            <label htmlFor="checkbox">Saturday</label>
-            <input className="w-4 h-4"
-              id="checkbox"
-              type="checkbox"
-              name="daysOfWeek"
-              value="Saturday"
-              checked={formData.daysOfWeek.includes('Saturday')}
-              onChange={handleChange}
-            />
-          </div>
-        </div>
-        </div>
+          <DaysOfWeekSelector
+          selectedDays={formData.daysOfWeek}
+          handleChange={handleChange}
+        />
  
         <div className="flex justify-between">
           <label htmlFor="reminderLength">Reminder Length:</label>
