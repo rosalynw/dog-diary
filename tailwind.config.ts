@@ -13,6 +13,7 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         bermuda: "#6A8FAF",
+        tacao: "#B87F90",
       },
     },
   },

@@ -31,10 +31,9 @@ const toggleDarkMode = (checked) => {
 
 return (
   <DarkModeSwitch
-  style={{ marginBottom: '2rem' }}
   checked={isDarkMode}
   onChange={toggleDarkMode}
-  size={40}
+  size={25}
   />
 )
 }

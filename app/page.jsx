@@ -13,14 +13,14 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen">
-      <div>
-        < DynamicHeader />
-      </div>
-      <div className="min-h-full flex justify-center flex-col">
-        <div className="flex justify-evenly place-content-center">
-          < ReminderList reminders={reminders}/>
-          < NewReminder addReminder={addReminder}/>
+    <div className="min-h-screen flex flex-col">
+      < DynamicHeader />
+      <div className="flex flex-grow justify-center items-center">
+        <div className="flex justify-center flex-col w-full">
+          <div className="flex justify-evenly">
+            < ReminderList reminders={reminders}/>
+            < NewReminder addReminder={addReminder}/>
+          </div>
         </div>
       </div>
 
