@@ -73,7 +73,7 @@ export default function NewReminder({addReminder}) {
             <div>
               <label htmlFor="medicineName" className="font-semibold">Medicine Name</label>
             <div className="border rounded bg-slate-200">
-              <input className="border-0 bg-transparent p-1 focus:outline-none"
+              <input className="border-0 bg-transparent p-1 focus:outline-none w-full"
                 id="medicineName"
                 type="text"
                 name="medicineName"
@@ -206,7 +206,7 @@ export default function NewReminder({addReminder}) {
         </div>
 
         <div className="flex justify-end space-x-5">
-          <button type="submit" className="font-semibold bg-bermuda hover:bg-green-700 rounded-full py-2 px-6">Submit</button>
+          <button type="submit" className="font-semibold bg-french hover:bg-green-700 rounded-lg py-2 px-6">Submit</button>
           <button type="button" className="font-semibold">Cancel</button>
         </div>
       </form>

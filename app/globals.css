@@ -6,15 +6,19 @@
   --background: #ececec;
   --foreground: #2e2e2e;
   --form-background: #f1f1f1cb;
+  --header-background: #007ea8;
 }
 
 .dark {
     --background: #252525;
     --foreground: #ededed;
-    --form-background: #575757;
-    --header-background:
+    --form-background: #333333;
+    --header-background: #004f70;
 }
 
+button {
+  color: black;
+}
 
 html,body {
   height: 100%;
@@ -24,6 +28,10 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  background-color: var(--header-background);
 }
 
 input {
