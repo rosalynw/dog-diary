@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 
-export default function NewReminder({addReminder}) {
+export default function NewReminder({addReminder, onCancel}) {
+
 
   const [formData, setFormData] = useState({
     title: '',
@@ -207,7 +208,7 @@ export default function NewReminder({addReminder}) {
 
         <div className="flex justify-end space-x-5">
           <button type="submit" className="font-semibold bg-french hover:bg-green-700 rounded-lg py-2 px-6">Submit</button>
-          <button type="button" className="font-semibold">Cancel</button>
+          <button type="button" className="font-semibold" onClick={onCancel}>Cancel</button>
         </div>
       </form>
     </div>

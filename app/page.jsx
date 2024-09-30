@@ -7,10 +7,14 @@ import { useState } from "react";
 
 export default function Home() {
   const [reminders, setReminders] = useState([]);
+  const [showNewReminder, setShowNewReminder] = useState(false);
 
   const addReminder = (newReminder) => {
     setReminders((prevReminders) => [...prevReminders, newReminder]);
   }
+
+  const handleAddNewClick = () => setShowNewReminder(true);
+  const handleCancelClick = () => setShowNewReminder(false);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -18,8 +22,8 @@ export default function Home() {
       <div className="flex flex-grow justify-center items-center">
         <div className="flex justify-center flex-col w-full">
           <div className="flex justify-evenly">
-            < ReminderList reminders={reminders}/>
-            < NewReminder addReminder={addReminder}/>
+            < ReminderList reminders={reminders} onAddNewClick={handleAddNewClick}/>
+            {showNewReminder && < NewReminder addReminder={addReminder} onCancel={handleCancelClick}/>}
           </div>
         </div>
       </div>
