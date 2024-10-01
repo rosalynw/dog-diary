@@ -1,8 +1,9 @@
 'use client'
 
 import DarkMode from "../darkMode/toggle";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
-export default function DynamicHeader() {
+export default function Sidebar() {
 
 
   return (
@@ -11,7 +12,10 @@ export default function DynamicHeader() {
         <div className="">
           <h1 className="text-lg font-bold">Dog Diary</h1>
         </div>
-        <div className="">< DarkMode /></div>
+        <div className="flex flex-row space-x-3">
+          <div className="profile-avatar">< AccountCircleIcon /></div>
+          <div className=""><DarkMode /></div>
+        </div>
       </nav>
     </header>
   )

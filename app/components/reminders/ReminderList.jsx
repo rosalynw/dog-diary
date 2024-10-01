@@ -8,21 +8,21 @@ export default function ReminderList({reminders, onAddNewClick}) {
 
 
   return (
-    <div className="reminder-container flex flex-col py-6 px-12 w-6/12 space-y-3 rounded-lg shadow-lg">
+    <div className="reminder-container flex flex-col py-6 px-12 w-fit space-y-3 rounded-lg shadow-lg">
       <div className='flex flex-row justify-between'>
         <h1 className="font-bold text-4xl">Reminders</h1>
         <button 
           type="button" 
-          className="py-2 px-6 font-semibold bg-french rounded-lg"
+          className="py-2 px-6 font-semibold bg-french rounded-lg text-gray-300"
           onClick={onAddNewClick}
         >
           Add New
-        </button>
+        </button> 
       </div>
-      <div className='border rounded-lg overflow-hidden border-gray-800 dark:border-gray-500'>
+      <div className='border rounded-lg overflow-hidden border-regal dark:border-french'>
         <table className="table-auto w-full divide-y divide-gray-300 dark:divide-gray-700">
           <thead className="bg-regal text-left">
-            <tr>
+            <tr className='divide-x-8 divide-transparent'>
               <th scope='col' className='py-3 pl-2 text-gray-300'>Title</th>
               <th scope='col' className='py-2 text-gray-300'>Medicine</th>
               <th scope='col' className='py-2 text-gray-300'>Dosage Time</th>

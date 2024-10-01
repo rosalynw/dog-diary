@@ -2,13 +2,13 @@
 
 export default function Reminder({reminder}) {
   return (
-    <tr className="reminder odd:bg-transparent even:bg-slate-300 even:text-black">
-        <td className="font-bold px-6 py-3">{reminder.title}</td>
-        <td>{reminder.medicineName}</td>
-        <td>{reminder.dosageTime}</td>
-        <td>{reminder.repeatEvery}</td>
-        <td>{reminder.startDate}</td>
-        <td className="">{reminder.endDate}</td>
+    <tr className="reminder odd:bg-transparent even:bg-slate-300 even:text-black divide-x-8">
+        <td className="font-bold px-2 py-3">{reminder.title}</td>
+        <td className="px-2">{reminder.medicineName}</td>
+        <td className="px-2">{reminder.dosageTime}</td>
+        <td className="text-center">{reminder.repeatEvery}</td>
+        <td className="px-2">{reminder.startDate}</td>
+        <td className="px-2">{reminder.endDate}</td>
     </tr>
   )
 }

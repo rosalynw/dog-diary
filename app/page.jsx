@@ -2,7 +2,7 @@
 
 import NewReminder from "./components/reminders/NewReminder";
 import ReminderList from "./components/reminders/ReminderList";
-import DynamicHeader from "./components/header/header";
+import Sidebar from "./components/sidebar/Sidebar";
 import { useState } from "react";
 
 export default function Home() {
@@ -62,13 +62,15 @@ export default function Home() {
   const handleCancelClick = () => setShowNewReminder(false);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      < DynamicHeader />
-      <div className="flex flex-grow justify-center items-center">
-        <div className="flex justify-center flex-col w-full">
-          <div className="flex justify-evenly">
-            < ReminderList reminders={dummyReminders} onAddNewClick={handleAddNewClick}/>
-            {showNewReminder && < NewReminder addReminder={addReminder} onCancel={handleCancelClick}/>}
+    <div className="min-h-screen flex">
+      <div className="sidebar w-72 border-regal border-r text-white h-screen">< Sidebar /></div>
+      <div className="flex-grow flex flex-col">
+        <div className="flex flex-grow justify-center items-center">
+          <div className="flex justify-center flex-col w-full">
+            <div className="flex justify-evenly">
+              < ReminderList reminders={dummyReminders} onAddNewClick={handleAddNewClick}/>
+              {showNewReminder && < NewReminder addReminder={addReminder} onCancel={handleCancelClick}/>}
+            </div>
           </div>
         </div>
       </div>

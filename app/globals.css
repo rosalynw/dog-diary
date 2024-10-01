@@ -6,14 +6,16 @@
   --background: #ececec;
   --foreground: #2e2e2e;
   --form-background: #f1f1f1cb;
-  --header-background: #007ea8;
+  --header-background: #7D2C70;
+  --sidebar-background: #ffffff;
 }
 
 .dark {
     --background: #252525;
     --foreground: #ededed;
     --form-background: #333333;
-    --header-background: #004f70;
+    --header-background: #7D2C70;
+    --sidebar-background: #333333;
 }
 
 button {
@@ -32,6 +34,10 @@ body {
 
 .header {
   background-color: var(--header-background);
+}
+
+.sidebar {
+  background-color: var(--sidebar-background);
 }
 
 input {
