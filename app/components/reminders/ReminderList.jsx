@@ -20,14 +20,15 @@ export default function ReminderList({reminders, onAddNewClick}) {
         </button>
       </div>
       <div className='border rounded-lg overflow-hidden border-gray-800 dark:border-gray-500'>
-        <table className="table-fixed w-full divide-y divide-gray-300 dark:divide-gray-700">
-          <thead className="bg-regal">
+        <table className="table-auto w-full divide-y divide-gray-300 dark:divide-gray-700">
+          <thead className="bg-regal text-left">
             <tr>
-              <th scope='col' className='px-2 py-4 text-gray-300'>Title</th>
-              <th scope='col' className='px-2 text-gray-300'>Medicine</th>
-              <th scope='col' className='px-2 text-gray-300'>Administer Time</th>
-              <th scope='col' className='px-2 text-gray-300'>Days</th>
-              <th scope='col' className='px-2 text-gray-300'>End Date</th>
+              <th scope='col' className='py-3 pl-2 text-gray-300'>Title</th>
+              <th scope='col' className='py-2 text-gray-300'>Medicine</th>
+              <th scope='col' className='py-2 text-gray-300'>Dosage Time</th>
+              <th scope='col' className='py-2 text-gray-300'>Repeat (Hours)</th>
+              <th scope='col' className='py-2 text-gray-300'>Start Date</th>
+              <th scope='col' className='py-2 text-gray-300'>End Date</th>
             </tr>
           </thead>
           <tbody>

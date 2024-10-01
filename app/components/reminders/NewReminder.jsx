@@ -4,36 +4,25 @@ import DaysOfWeekSelector from './DaysofWeekSelector';
 import { useState } from "react";
 
 export default function NewReminder({addReminder, onCancel}) {
+  const [repeatEvery, setRepeatEvery] = useState('')
 
 
   const [formData, setFormData] = useState({
     title: '',
     medicineName: '',
-    administerTime: '',
-    daysOfWeek: [],
-    reminderLength: '',
+    dosageTime: '',
+    repeatEvery: '',
+    startDate: '',
+    endDate: '',
   })
 
   const handleChange = (e) => {
-    const { name, value, checked } = e.target;
-
-    if (name === 'daysOfWeek') {
-      // Handle checkbox for select days of the week
-      const newDaysOfWeek = checked 
-      ? [...formData.daysOfWeek, value] //Add day if checked
-      : formData.daysOfWeek.filter(day => day !== value); // Remove if unchecked
-
+    const { name, value } = e.target;
       setFormData({
         ...formData,
-        daysOfWeek: newDaysOfWeek,
+        [name]: value,
       });
-    } else {
-      setFormData({
-        ...formData,
-        [e.target.name]: e.target.value
-      });
-    }
-  };
+    };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,18 +32,19 @@ export default function NewReminder({addReminder, onCancel}) {
     setFormData({
       title: '',
       medicineName: '',
-      administerTime: '',
-      daysOfWeek: [],
-      reminderLength: '',
+      dosageTime: '',
+      repeatEvery: '',
+      startDate: '',
+      endDate: '',
     })
     console.log(formData);
-  }
+  };
 
   return (
       <div className="form-container flex flex-col py-6 px-12 w-3/12 rounded-lg shadow-lg"> 
         <form onSubmit={handleSubmit} className="space-y-4">
           <h1 className="font-bold text-4xl">New Reminder</h1>
-          <div>
+          
             <div>
             <label htmlFor="title" className="font-semibold">Title</label>
             <div className="border rounded bg-slate-200">
@@ -69,9 +59,9 @@ export default function NewReminder({addReminder, onCancel}) {
                 />
             </div>
             </div>
-          </div>
+         
           
-          <div>
+       
             <div>
               <label htmlFor="medicineName" className="font-semibold">Medicine Name</label>
             <div className="border rounded bg-slate-200">
@@ -86,37 +76,64 @@ export default function NewReminder({addReminder, onCancel}) {
                 />
             </div>
             </div>
-          </div>
+        
 
-          <div>
+          
             <div className="flex justify-between">
-              <label htmlFor="administerTime" className="font-semibold">Administer Time:</label>
+              <label htmlFor="dosageTime" className="font-semibold">Dosage Time:</label>
             <div className="border rounded bg-slate-200">
               <input className="border-0 bg-transparent p-1 focus:outline-none w-full"
-                id="administerTime"
+                id="dosageTime"
                 type="time"
-                name="administerTime"
-                value={formData.administerTime}
+                name="dosageTime"
+                value={formData.dosageTime}
                 onChange={handleChange}
                 required
                 />
             </div>
             </div>
-          </div>
+        
 
-          <DaysOfWeekSelector
-          selectedDays={formData.daysOfWeek}
-          handleChange={handleChange}
-        />
+          <div className="flex justify-between">
+          <label htmlFor="startDate" className="font-semibold">Start Date:</label>
+          <div className="border rounded bg-slate-200">
+            <input
+              className="border-0 bg-transparent p-1 focus:outline-none w-full"
+              id="startDate"
+              type="date"
+              name="startDate"
+              value={formData.startDate}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
+
+          <div className="flex justify-between">
+          <label htmlFor="repeatEvery" className="font-semibold">Repeat Every (Hours)</label>
+          <div className="border rounded bg-slate-200">
+            <input
+              className="border-0 bg-transparent p-1 focus:outline-none"
+              id='repeatEvery'
+              type="number"
+              name='repeatEvery'
+              min={0}
+              value={repeatEvery}
+              placeholder='e.g., 6'
+              onChange={(e) => setRepeatEvery(e.target.value)}
+            />
+          </div>
+        </div>
  
         <div className="flex justify-between">
-          <label htmlFor="reminderLength">Reminder Length:</label>
+          <label htmlFor="endDate" className="font-semibold">End Date:</label>
             <div className="border rounded bg-slate-200">
-              <input className="border-0 bg-transparent p-1 focus:outline-none w-full"
-                id="reminderLength"
-                type="datetime-local"
-                name="reminderLength"
-                value={formData.reminderLength}
+              <input 
+                className="border-0 bg-transparent p-1 focus:outline-none w-full"
+                id="endDate"
+                type="date"
+                name="endDate"
+                value={formData.endDate}
                 onChange={handleChange}
                 required
               />
