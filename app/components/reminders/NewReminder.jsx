@@ -9,6 +9,7 @@ export default function NewReminder({addReminder, onCancel}) {
 
   const [formData, setFormData] = useState({
     title: '',
+    petName: '',
     medicineName: '',
     dosageTime: '',
     repeatEvery: '',
@@ -31,6 +32,7 @@ export default function NewReminder({addReminder, onCancel}) {
 
     setFormData({
       title: '',
+      petName: '',
       medicineName: '',
       dosageTime: '',
       repeatEvery: '',
@@ -59,9 +61,22 @@ export default function NewReminder({addReminder, onCancel}) {
                 />
             </div>
             </div>
-         
+
+            <div>
+              <label htmlFor="petName" className="font-semibold">Pet Name</label>
+            <div className="border rounded bg-slate-200">
+              <input className="border-0 bg-transparent p-1 focus:outline-none w-full"
+                id="petName"
+                type="text"
+                name="petName"
+                value={formData.petName}
+                onChange={handleChange}
+                placeholder="Whiskers"
+                required
+                />
+            </div>
+            </div>
           
-       
             <div>
               <label htmlFor="medicineName" className="font-semibold">Medicine Name</label>
             <div className="border rounded bg-slate-200">

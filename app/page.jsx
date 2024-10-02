@@ -16,6 +16,7 @@ export default function Home() {
   const dummyReminders = [
     {
       title: "Sparky's Flea Meds",
+      petName: "Sparky",
       medicineName: "Flea/Tick Medicine",
       dosageTime: "08:00 AM",
       repeatEvery: 6, // Number representing hours
@@ -24,6 +25,7 @@ export default function Home() {
     },
     {
       title: "Bella's Heartworm Pills",
+      petName: "Bert",
       medicineName: "Heartworm Prevention",
       dosageTime: "09:00 AM",
       repeatEvery: 12,
@@ -32,6 +34,7 @@ export default function Home() {
     },
     {
       title: "Max's Allergy Medication",
+      petName: "Bert",
       medicineName: "Allergy Relief",
       dosageTime: "07:30 AM",
       repeatEvery: 24,
@@ -40,6 +43,7 @@ export default function Home() {
     },
     {
       title: "Daisy's Worming Treatment",
+      petName: "Whiskers",
       medicineName: "Worm Treatment",
       dosageTime: "06:00 PM",
       repeatEvery: 168, // 1 Week in hours
@@ -48,6 +52,7 @@ export default function Home() {
     },
     {
       title: "Rocky's Eye Drops",
+      petName: "Sparky",
       medicineName: "Eye Medication",
       dosageTime: "03:00 PM",
       repeatEvery: 8,
