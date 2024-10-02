@@ -13,7 +13,7 @@ export default function ReminderList({reminders, onAddNewClick}) {
         <h1 className="font-bold text-4xl">Reminders</h1>
         <button 
           type="button" 
-          className="py-2 px-6 font-semibold bg-french rounded-lg text-gray-300"
+          className="py-2 px-6 font-semibold bg-french rounded-lg text-gray-300 hover:text-gray-50"
           onClick={onAddNewClick}
         >
           Add New
@@ -21,7 +21,7 @@ export default function ReminderList({reminders, onAddNewClick}) {
       </div>
       <div className='border rounded-lg overflow-hidden border-regal dark:border-french'>
         <table className="table-auto w-full divide-y divide-gray-300 dark:divide-gray-700">
-          <thead className="bg-regal text-left">
+          <thead className="bg-regal text-left dark:bg-french">
             <tr className='divide-x-8 divide-transparent'>
               <th scope='col' className='py-3 pl-2 text-gray-300'>Title</th>
               <th scope='col' className='py-2 text-gray-300'>Medicine</th>

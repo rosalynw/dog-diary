@@ -141,8 +141,8 @@ export default function NewReminder({addReminder, onCancel}) {
         </div>
 
         <div className="flex justify-end space-x-5">
-          <button type="submit" className="font-semibold bg-french hover:bg-green-700 rounded-lg py-2 px-6">Submit</button>
-          <button type="button" className="font-semibold" onClick={onCancel}>Cancel</button>
+          <button type="submit" className="font-semibold text-gray-300 bg-french hover:text-gray-50 rounded-lg py-2 px-6">Submit</button>
+          <button type="button" className="font-semibold border border-regal hover:bg-regal hover:text-gray-300 dark:text-gray-300 rounded-lg py-2 px-6" onClick={onCancel}>Cancel</button>
         </div>
       </form>
     </div>
