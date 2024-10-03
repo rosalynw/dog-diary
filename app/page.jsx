@@ -60,16 +60,12 @@ export default function Home() {
       endDate: "2024-10-05",
     },
   ];
-  
-  
 
   const handleAddNewClick = () => setShowNewReminder(true);
   const handleCancelClick = () => setShowNewReminder(false);
 
   return (
     <div className="min-h-screen flex">
-      <div className="sidebar w-72 border-regal border-r text-white h-screen">< Sidebar /></div>
-      <div className="flex-grow flex flex-col">
         <div className="flex flex-grow justify-center items-center">
           <div className="flex justify-center flex-col w-full">
             <div className="flex justify-evenly">
@@ -77,7 +73,6 @@ export default function Home() {
               {showNewReminder && < NewReminder addReminder={addReminder} onCancel={handleCancelClick}/>}
             </div>
           </div>
-        </div>
       </div>
 
     </div>

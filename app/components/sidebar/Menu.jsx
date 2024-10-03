@@ -1,6 +1,7 @@
 'use client'
 
 import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from "@mui/icons-material";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Menu({ title, submenuItems}) {
@@ -29,7 +30,7 @@ export default function Menu({ title, submenuItems}) {
             {submenuItems.map((item) => (
               <li key={item.name} className="py-1 text-black font-semibold text-sm hover:text-white cursor-pointer">
                 {/* Wrap this in a Link later for routing use "to={item.route}" */}
-                {item.name}
+                <Link href="/pets">{item.name}</Link>
               </li>
             ))}
           </ul>

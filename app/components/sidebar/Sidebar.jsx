@@ -3,6 +3,7 @@
 import DarkMode from "../darkMode/toggle";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Menu from "./Menu";
+import Link from "next/link";
 
 export default function Sidebar() {
 
@@ -26,12 +27,12 @@ export default function Sidebar() {
 
 
   return (
-    <aside>
+    <aside className="sidebar h-screen min-w-72 border-regal border-r text-white">
       <header className="header flex flex-row h-14">
         <div className="flex justify-around w-full py-2 px-4 items-center">
-          <button className="logo text-2xl font-bold text-white">
+          <Link href="/" className="logo text-2xl font-bold text-white">
             Dog Diary
-          </button>
+          </Link>
           <div className="flex flex-row space-x-3">
             <div className="profile-avatar">< AccountCircleIcon /></div>
             <div className=""><DarkMode /></div>

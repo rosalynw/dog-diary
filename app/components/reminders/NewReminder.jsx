@@ -43,7 +43,7 @@ export default function NewReminder({addReminder, onCancel}) {
   };
 
   return (
-      <div className="form-container flex flex-col py-6 px-12 w-3/12 rounded-lg shadow-lg"> 
+      <div className="form-container flex flex-col py-6 px-12 min-w-3/12 rounded-lg shadow-lg"> 
         <form onSubmit={handleSubmit} className="space-y-4">
           <h1 className="font-bold text-4xl">New Reminder</h1>
           
