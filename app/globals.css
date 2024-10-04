@@ -49,7 +49,7 @@ h2 {
   font-size: large;
 }
 
-.form-container, .reminder-container {
+.form-container, .container {
   background-color: var(--form-background);
 }
 

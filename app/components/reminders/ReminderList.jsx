@@ -1,14 +1,15 @@
 'use client'
 
 import Reminder from './Reminder'
-import { useState } from "react"
-import NewReminder from './NewReminder'
+//remove lines
+// import { useState } from "react"
+// import NewReminder from './NewReminder'
 
 export default function ReminderList({reminders, onAddNewClick}) {
 
 
   return (
-    <div className="reminder-container flex flex-col py-6 px-12 w-fit space-y-3 rounded-lg shadow-lg">
+    <div className="container flex flex-col py-6 px-12 w-fit space-y-3 rounded-lg shadow-lg">
       <div className='flex flex-row justify-between'>
         <h1 className="font-bold text-4xl">Reminders</h1>
         <button 

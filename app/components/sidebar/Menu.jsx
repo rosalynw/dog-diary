@@ -5,10 +5,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Menu({ title, submenuItems}) {
-  const [isSubmeuOpen, setSubmenuIsOpen] = useState(false);
+  const [isSubmenuOpen, setSubmenuIsOpen] = useState(false);
 
   const toggleSubmenu = () => {
-    setSubmenuIsOpen(!isSubmeuOpen);
+    setSubmenuIsOpen(!isSubmenuOpen);
   }
   return (
     <div className="flex flex-col w-full">
@@ -19,18 +19,18 @@ export default function Menu({ title, submenuItems}) {
         onClick={toggleSubmenu}
         >
           {title}
-          {isSubmeuOpen ? (
+          {isSubmenuOpen ? (
             <KeyboardArrowUpRounded className="ml-auto" />
           ): (< KeyboardArrowDownRounded className="ml-auto"/>
           )}
           </button>
 
-        {isSubmeuOpen && (
+        {isSubmenuOpen && (
           <ul className="submenu pl-6 w-full bg-gray-400">
             {submenuItems.map((item) => (
               <li key={item.name} className="py-1 text-black font-semibold text-sm hover:text-white cursor-pointer">
                 {/* Wrap this in a Link later for routing use "to={item.route}" */}
-                <Link href="/pets">{item.name}</Link>
+                <Link href={`/${title.toLowerCase()}/${item.name}`}>{item.name}</Link>
               </li>
             ))}
           </ul>

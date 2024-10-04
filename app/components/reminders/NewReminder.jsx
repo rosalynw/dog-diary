@@ -1,6 +1,5 @@
 'use client'
 
-import DaysOfWeekSelector from './DaysofWeekSelector';
 import { useState } from "react";
 
 export default function NewReminder({addReminder, onCancel}) {
