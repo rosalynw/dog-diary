@@ -1,6 +1,10 @@
 'use client'
 
+import NewReminder from '@/app/components/reminders/NewReminder';
+import GoBackButton from '@/app/components/Buttons/GoBackButton';
 import { camelCaseToReadable } from '@/utilities/stringUtils';
+import { useState } from 'react';
+
 export default function Pet({ params }) {
 
   const {petName} = params;
@@ -36,8 +40,17 @@ export default function Pet({ params }) {
   };
   const pet = petData[petName] || {};
 
+    // State to control the visibility of the Reminder component
+    const [showNewReminder, setShowNewReminder] = useState(false);
+
+    // Handler to toggle the visibility of the Reminder component
+    const toggleReminder = () => {
+      setShowNewReminder(!showNewReminder);
+    };
+
   return (
     <div className="flex flex-col items-center">
+      <GoBackButton />
       <div className="container flex flex-col py-6 px-12 space-y-3 w-fit max-w-4xl rounded-lg shadow-lg">
         <div className="flex flex-row space-x-10">
           <div>
@@ -66,6 +79,7 @@ export default function Pet({ params }) {
             Share Profile
           </button>
         </div>
+
       </div>
     </div>
   )
