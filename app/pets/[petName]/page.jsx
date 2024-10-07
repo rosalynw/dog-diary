@@ -57,11 +57,11 @@ export default function Pet({ params }) {
     }
 
   return (
-    <div className="flex min-h-screen justify-center">
-      <div className='backButton order-2'>
+    <div className="relative flex min-h-screen items-center justify-center">
+      <div className='backButton absolute top-2 right-5'>
         <GoBackButton />
       </div>
-      <div className='flex items-center space-x-5'>
+      <div className='flex items-center space-x-10 space-y-4'>
         <div className="container flex flex-col py-6 px-12 space-y-3 w-fit max-w-4xl rounded-lg shadow-lg">
           <div className="flex flex-row space-x-10">
             <div>
