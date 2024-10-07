@@ -40,6 +40,7 @@ export default function Sidebar() {
         </div>
       </header>
       <nav className="flex flex-col w-full">
+        <Menu title="Reminders" />
         <Menu title="Pets" submenuItems={petMenuItems} />
         <Menu title="Owners" submenuItems={ownersMenuItems} />
         <Menu title="Account" submenuItems={accountMenuItems} />

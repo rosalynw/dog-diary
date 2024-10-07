@@ -11,7 +11,7 @@ export default function GoBackButton() {
     <>
       {!isHomePage && (
         <button 
-          className="bg-french text-gray-300 px-4 py-2 rounded-lg mb-4"
+          className="font-semibold bg-french text-gray-300 px-4 py-2 rounded-lg mb-4 hover:text-white"
           onClick={() => router?.back()}
         >
           Go Back
