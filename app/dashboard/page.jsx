@@ -1,8 +1,8 @@
 'use client'
 
-import NewReminder from "./components/reminders/NewReminder";
-import ReminderList from "./components/reminders/ReminderList";
-import Sidebar from "./components/sidebar/Sidebar";
+import NewReminder from "../components/reminders/NewReminder";
+import ReminderList from "../components/reminders/ReminderList";
+import Sidebar from "../components/sidebar/Sidebar";
 import { useState } from "react";
 
 export default function Home() {
@@ -66,6 +66,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex">
+        <div className="flex flex-grow justify-center items-center">
+          <div className="flex justify-center flex-col w-full">
+            <div className="flex justify-evenly">
+              < ReminderList reminders={dummyReminders} onAddNewClick={handleAddNewClick}/>
+              {showNewReminder && < NewReminder addReminder={addReminder} onCancel={handleCancelClick}/>}
+            </div>
+          </div>
+      </div>
+
     </div>
   );
 }

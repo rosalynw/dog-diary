@@ -30,7 +30,7 @@ export default function Sidebar() {
     <aside className="sidebar h-screen min-w-72 border-regal border-r text-white">
       <header className="header flex flex-row h-14">
         <div className="flex justify-between w-full py-2 px-5 items-center">
-          <Link href="/" className="logo text-2xl font-bold text-white hover:ring-2 dark:hover:text-white">
+          <Link href="/dashboard" className="logo text-2xl font-bold text-white hover:ring-2 dark:hover:text-white">
             Dog Diary
           </Link>
           <div className="flex flex-row space-x-5">

@@ -40,7 +40,7 @@ export default function Menu({ title, submenuItems}) {
         {isSubmenuOpen && hasSubmenu && (
           <ul className="submenu pl-6 w-full bg-gray-400">
             {submenuItems.map((item) => (
-               <Link href={`/${title.toLowerCase()}/${item.name}`}>
+               <Link href={`/dashboard/${title.toLowerCase()}/${item.name}`}>
               <li key={item.name} className="py-1 text-black font-semibold text-sm hover:text-white cursor-pointer">
                 {/* Wrap this in a Link later for routing use "to={item.route}" */}
                {item.name}
