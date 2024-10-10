@@ -64,7 +64,7 @@ export default function Home() {
   const handleCancelClick = () => setShowNewReminder(false);
 
   return (
-    <div className="min-h-screen flex">
+    <div className="h-screen flex">
         <div className="flex flex-grow justify-center items-center">
           <div className="flex justify-center flex-col w-full">
             <div className="flex justify-evenly">

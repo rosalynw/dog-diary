@@ -6,7 +6,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div className="flex">
       <Sidebar /> {/* Sidebar will appear on all dashboard subpages */}
-      <main className="flex-grow p-4">
+      <main className="flex-grow">
         {children} {/* Render the content of each subpage here */}
       </main>
     </div>
