@@ -35,7 +35,7 @@ export default function Sidebar() {
           </Link>
           <div className="flex flex-row space-x-5">
             <div className=""><DarkMode /></div>
-            <Link href="/profile">
+            <Link href="/dashboard/profile">
               <div className="profile-avatar">< AccountCircleIcon /></div>
             </Link>
           </div>

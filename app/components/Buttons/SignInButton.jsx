@@ -1,9 +1,8 @@
 'use client'
-
 import { signIn } from "next-auth/react"
 
-export default function SignIn() {
+export function SignInButton() {
   return (
-    <button onClick={() => signIn("google", { redirectTo: "/"})}>Sign In</button>
+    <button onClick={() => signIn("google", { callbackUrl: "/dashboard"})}>Sign In</button>
   )
 }

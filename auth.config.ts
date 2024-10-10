@@ -1,9 +1,10 @@
 import type { NextAuthConfig } from "next-auth";
+import Google from "next-auth/providers/google";
 import { signIn } from "next-auth/react";
 
 export const authConfig = {
   pages: {
-    signIn: '/login',
+    signIn: '/sign-in',
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
@@ -18,5 +19,7 @@ export const authConfig = {
       return true;
     },
   },
-  providers: [],
+  providers: [ 
+    Google
+   ],
 } satisfies NextAuthConfig;

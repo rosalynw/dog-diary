@@ -1,5 +1,6 @@
 
 import { signIn } from "@/auth";
+import { SignInButton } from "@/app/components/buttons/SignInButton";
 
 export default function SignIn() {
   return (
@@ -16,7 +17,7 @@ export default function SignIn() {
                 await signIn("google")
               }}
             >
-              <button type="submit">Signin with Google</button>
+              <SignInButton />
               </form>
           </div>
         </div>

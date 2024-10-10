@@ -2,7 +2,6 @@
 
 import NewReminder from "../components/reminders/NewReminder";
 import ReminderList from "../components/reminders/ReminderList";
-import Sidebar from "../components/sidebar/Sidebar";
 import { useState } from "react";
 
 export default function Home() {
