@@ -1,6 +1,6 @@
 'use client'
 
-import DarkMode from "../darkMode/toggle";
+import DarkMode from "../darkMode/Toggle";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Menu from "./Menu";
 import Link from "next/link";
