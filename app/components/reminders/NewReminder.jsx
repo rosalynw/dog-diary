@@ -1,20 +1,36 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function NewReminder({addReminder, onCancel}) {
-  const [repeatEvery, setRepeatEvery] = useState('')
-
+  const [pets, setPets] = useState([]);
 
   const [formData, setFormData] = useState({
     title: '',
-    petName: '',
+    petId: '',
     medicineName: '',
-    dosageTime: '',
+    dosage: '',
     repeatEvery: '',
     startDate: '',
+    startTime: '',
     endDate: '',
   })
+
+  useEffect(() => {
+    const fetchPets = async () => {
+      try {
+        const response = await fetch('/api/pets')
+        const data = await response.json();
+        
+        console.log(data.pets)
+        setPets(data.pets);
+      } catch (error) {
+        console.error('Error fetching pets:', error );
+      }
+    };
+
+    fetchPets();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,21 +40,50 @@ export default function NewReminder({addReminder, onCancel}) {
       });
     };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    addReminder(formData);
+    const newReminder = { 
+      title: formData.title,
+      pet_id: formData.petId,
+      medication: formData.medicineName,
+      dosage: formData.dosage,
+      repeat_hours: formData.repeatEvery,
+      start_time: `${formData.startDate}T${formData.startTime}`,
+      end_time: formData.endDate,
+    };
+
+    try {
+      const response = await fetch ('/api/reminders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newReminder),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network respons was not ok');
+      }
+      const data = await response.json();
+      
+      addReminder(data.reminder);
 
     setFormData({
       title: '',
-      petName: '',
+      petId: '',
       medicineName: '',
-      dosageTime: '',
+      dosage: '',
       repeatEvery: '',
       startDate: '',
+      startTime: '',
       endDate: '',
-    })
-    console.log(formData);
+    });
+
+    console.log('New Reminder:', data.reminder);
+  } catch (error) {
+    console.error('Error creating reminders:', error);
+    }
   };
 
   return (
@@ -64,15 +109,21 @@ export default function NewReminder({addReminder, onCancel}) {
             <div>
               <label htmlFor="petName" className="font-semibold">Pet Name</label>
             <div className="border rounded bg-slate-200">
-              <input className="border-0 bg-transparent p-1 focus:outline-none w-full"
-                id="petName"
+              <select className="border-0 bg-transparent p-1 focus:outline-none w-full"
+                id="petId"
                 type="text"
-                name="petName"
-                value={formData.petName}
+                name="petId"
+                value={formData.petId}
                 onChange={handleChange}
-                placeholder="Whiskers"
                 required
-                />
+                >
+                  <option value="">Select a pet</option>
+                  {pets.map(pet => (
+                    <option key={pet.id} value={pet.id}>
+                      {pet.name}
+                    </option>
+                  ))}
+                </select>
             </div>
             </div>
           
@@ -85,30 +136,44 @@ export default function NewReminder({addReminder, onCancel}) {
                 name="medicineName"
                 value={formData.medicineName}
                 onChange={handleChange}
-                placeholder="Flea/Tick Medicine"
+                placeholder="Frontline, Heartguard"
                 required
                 />
             </div>
             </div>
-        
-
           
             <div className="flex justify-between">
-              <label htmlFor="dosageTime" className="font-semibold">Dosage Time:</label>
+              <label htmlFor="dosage" className="font-semibold">Dosage:</label>
             <div className="border rounded bg-slate-200">
               <input className="border-0 bg-transparent p-1 focus:outline-none w-full"
-                id="dosageTime"
-                type="time"
-                name="dosageTime"
-                value={formData.dosageTime}
+                id="dosage"
+                type="text"
+                name="dosage"
+                value={formData.dosage}
                 onChange={handleChange}
+                placeholder="e.g., 1/2 pill"
                 required
                 />
             </div>
-            </div>
-        
+          </div>
 
-          <div className="flex justify-between">
+          <div className="flex space-x-4">
+            <label htmlFor="repeatEvery" className="font-semibold">Repeat (Hours):</label>
+            <div className="border rounded bg-slate-200">
+              <input
+                className="border-0 bg-transparent p-1 focus:outline-none w-full"
+                id='repeatEvery'
+                type="number"
+                name='repeatEvery'
+                min={0}
+                value={formData.repeatEvery}
+                placeholder='e.g., 6'
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+        <div className="flex justify-between">
           <label htmlFor="startDate" className="font-semibold">Start Date:</label>
           <div className="border rounded bg-slate-200">
             <input
@@ -123,18 +188,17 @@ export default function NewReminder({addReminder, onCancel}) {
           </div>
         </div>
 
-          <div className="flex justify-between">
-          <label htmlFor="repeatEvery" className="font-semibold">Repeat Every (Hours)</label>
+        <div className="flex justify-between">
+          <label htmlFor="startTime" className="font-semibold">Start Time:</label>
           <div className="border rounded bg-slate-200">
             <input
-              className="border-0 bg-transparent p-1 focus:outline-none"
-              id='repeatEvery'
-              type="number"
-              name='repeatEvery'
-              min={0}
-              value={repeatEvery}
-              placeholder='e.g., 6'
-              onChange={(e) => setRepeatEvery(e.target.value)}
+              className="border-0 bg-transparent p-1 focus:outline-none w-full"
+              id="startTime"
+              type="time"
+              name="startTime"
+              value={formData.startTime}
+              onChange={handleChange}
+              required
             />
           </div>
         </div>

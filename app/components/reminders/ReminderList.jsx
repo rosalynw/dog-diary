@@ -27,9 +27,10 @@ export default function ReminderList({reminders, onAddNewClick}) {
               <th scope='col' className='py-2 pl-2 text-gray-300'>Title</th>
               <th scope='col' className='py-2 text-gray-300'>Pet</th>
               <th scope='col' className='py-2 text-gray-300'>Medicine</th>
-              <th scope='col' className='py-2 text-gray-300'>Dosage Time</th>
+              <th scope='col' className='py-2 text-gray-300'>Dosage</th>
               <th scope='col' className='py-2 text-gray-300'>Repeat (Hours)</th>
               <th scope='col' className='py-2 text-gray-300'>Start Date</th>
+              <th scope='col' className='py-2 text-gray-300'>Start Time</th>
               <th scope='col' className='py-2 pr-2 text-gray-300'>End Date</th>
             </tr>
           </thead>
