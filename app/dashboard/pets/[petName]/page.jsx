@@ -2,7 +2,7 @@
 
 import NewReminder from '@/app/components/reminders/NewReminder';
 import GoBackButton from '@/app/components/Buttons/GoBackButton';
-import { camelCaseToReadable } from '@/utilities/stringUtils';
+import { camelCaseToReadable } from '@/utils/stringUtils';
 import { useState } from 'react';
 
 export default function Pet({ params }) {
