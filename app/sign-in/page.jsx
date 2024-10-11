@@ -10,7 +10,6 @@ const pacifico = Pacifico({
   variable: '--font-pacifico'
 })
 
-
 export default function SignIn() {
   return (
     <main className="m-0 flex flex-row">

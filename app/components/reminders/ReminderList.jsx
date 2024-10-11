@@ -7,7 +7,7 @@ import Reminder from './Reminder'
 
 export default function ReminderList({reminders, onAddNewClick}) {
   return (
-    <div className="container flex flex-col py-6 px-12 w-fit space-y-3 rounded-lg shadow-lg">
+    <div className="container flex flex-col py-6 px-12 w-fit space-y-3 rounded-lg shadow-lg max-h-96">
       <div className='flex flex-row justify-between'>
         <h1 className="font-bold text-4xl">Reminders</h1>
         <button 
@@ -18,21 +18,21 @@ export default function ReminderList({reminders, onAddNewClick}) {
           Add New
         </button> 
       </div>
-      <div className='border rounded-lg overflow-hidden border-regal dark:border-french '>
+      <div className='border rounded-lg overflow-auto border-regal dark:border-french'>
         <table className="table-auto w-full divide-y divide-gray-300 dark:divide-gray-700">
           <thead className="bg-regal text-left dark:bg-french">
             <tr className='divide-x-8 divide-transparent'>
-              <th scope='col' className='py-2 pl-2 text-gray-300'>Title</th>
-              <th scope='col' className='py-2 text-gray-300'>Pet</th>
-              <th scope='col' className='py-2 text-gray-300'>Medicine</th>
-              <th scope='col' className='py-2 text-gray-300'>Dosage</th>
-              <th scope='col' className='py-2 text-gray-300'>Repeat (Hours)</th>
-              <th scope='col' className='py-2 text-gray-300'>Start Date</th>
-              <th scope='col' className='py-2 text-gray-300'>Start Time</th>
-              <th scope='col' className='py-2 pr-2 text-gray-300'>End Date</th>
+              <th scope='col' className='sticky top-0 py-2 px-2 bg-regal text-gray-300 text-center'>Title</th>
+              <th scope='col' className='sticky top-0 py-2 px-2 bg-regal text-gray-300 text-center'>Pet</th>
+              <th scope='col' className='sticky top-0 py-2 px-2 bg-regal text-gray-300 text-center'>Medicine</th>
+              <th scope='col' className='sticky top-0 py-2 px-2 bg-regal text-gray-300 text-center'>Dosage</th>
+              <th scope='col' className='sticky top-0 py-2 px-2 bg-regal text-gray-300 text-center'>Repeat (Hours)</th>
+              <th scope='col' className='sticky top-0 py-2 px-2 bg-regal text-gray-300 text-center'>Start Date</th>
+              <th scope='col' className='sticky top-0 py-2 px-2 bg-regal text-gray-300 text-center'>Start Time</th>
+              <th scope='col' className='sticky top-0 py-2 px-2 bg-regal text-gray-300 text-center'>End Date</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className=''>
             {reminders.length > 0 ? (
               reminders.map((reminder, index) => (
                 <Reminder key={index} reminder={reminder} />
