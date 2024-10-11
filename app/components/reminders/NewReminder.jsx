@@ -7,13 +7,13 @@ export default function NewReminder({addReminder, onCancel}) {
 
   const [formData, setFormData] = useState({
     title: '',
-    petId: '',
-    medicineName: '',
+    pet_id: '',
+    medication: '',
     dosage: '',
-    repeatEvery: '',
-    startDate: '',
-    startTime: '',
-    endDate: '',
+    start_date: '',
+    start_time: '',
+    end_date: '',
+    repeat_hours: '',
   })
 
   useEffect(() => {
@@ -43,54 +43,33 @@ export default function NewReminder({addReminder, onCancel}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newReminder = { 
-      title: formData.title,
-      pet_id: formData.petId,
-      medication: formData.medicineName,
-      dosage: formData.dosage,
-      repeat_hours: formData.repeatEvery,
-      start_time: `${formData.startDate}T${formData.startTime}`,
-      end_time: formData.endDate,
-    };
+        // Combine start_date and start_time into a single timestamp
+        const startTimeStamp = new Date(`${formData.start_date}T${formData.start_time}:00`).toISOString();
 
-    try {
-      const response = await fetch ('/api/reminders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newReminder),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network respons was not ok');
-      }
-      const data = await response.json();
-      
-      addReminder(data.reminder);
+        const newReminderData = {
+          ...formData,
+          start_time: startTimeStamp, // Use the combined timestamp
+        };    
+    
+    console.log(formData);
+    await addReminder(formData);
 
     setFormData({
       title: '',
-      petId: '',
-      medicineName: '',
+      pet_id: '',
+      medication: '',
       dosage: '',
-      repeatEvery: '',
-      startDate: '',
-      startTime: '',
-      endDate: '',
+      start_date: '',
+      start_time: '',
+      end_date: '',
+      repeat_hours: '',
     });
-
-    console.log('New Reminder:', data.reminder);
-  } catch (error) {
-    console.error('Error creating reminders:', error);
-    }
   };
 
   return (
       <div className="form-container flex flex-col py-6 px-12 min-w-3/12 rounded-lg shadow-lg"> 
+      <h1 className="font-bold text-4xl">New Reminder</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <h1 className="font-bold text-4xl">New Reminder</h1>
-          
             <div>
             <label htmlFor="title" className="font-semibold">Title</label>
             <div className="border rounded bg-slate-200">
@@ -107,17 +86,17 @@ export default function NewReminder({addReminder, onCancel}) {
             </div>
 
             <div>
-              <label htmlFor="petName" className="font-semibold">Pet Name</label>
+              <label htmlFor="pet_id" className="font-semibold">Pet Name</label>
             <div className="border rounded bg-slate-200">
-              <select className="border-0 bg-transparent p-1 focus:outline-none w-full"
-                id="petId"
+              <select className="border-0 bg-transparent p-1 focus:outline-none w-full text-black"
+                id="pet_id"
                 type="text"
-                name="petId"
-                value={formData.petId}
+                name="pet_id"
+                value={formData.pet_id}
                 onChange={handleChange}
                 required
                 >
-                  <option value="">Select a pet</option>
+                  <option value="" className="text-slate-400">Select a pet</option>
                   {pets.map(pet => (
                     <option key={pet.id} value={pet.id}>
                       {pet.name}
@@ -128,13 +107,13 @@ export default function NewReminder({addReminder, onCancel}) {
             </div>
           
             <div>
-              <label htmlFor="medicineName" className="font-semibold">Medicine Name</label>
+              <label htmlFor="medication" className="font-semibold">Medicine Name</label>
             <div className="border rounded bg-slate-200">
               <input className="border-0 bg-transparent p-1 focus:outline-none w-full"
-                id="medicineName"
+                id="medication"
                 type="text"
-                name="medicineName"
-                value={formData.medicineName}
+                name="medication"
+                value={formData.medication}
                 onChange={handleChange}
                 placeholder="Frontline, Heartguard"
                 required
@@ -158,15 +137,15 @@ export default function NewReminder({addReminder, onCancel}) {
           </div>
 
           <div className="flex space-x-4">
-            <label htmlFor="repeatEvery" className="font-semibold">Repeat (Hours):</label>
+            <label htmlFor="repeat_hours" className="font-semibold">Repeat (Hours):</label>
             <div className="border rounded bg-slate-200">
               <input
                 className="border-0 bg-transparent p-1 focus:outline-none w-full"
-                id='repeatEvery'
+                id='repeat_hours'
                 type="number"
-                name='repeatEvery'
+                name='repeat_hours'
                 min={0}
-                value={formData.repeatEvery}
+                value={formData.repeat_hours}
                 placeholder='e.g., 6'
                 onChange={handleChange}
               />
@@ -174,14 +153,14 @@ export default function NewReminder({addReminder, onCancel}) {
           </div>
 
         <div className="flex justify-between">
-          <label htmlFor="startDate" className="font-semibold">Start Date:</label>
+          <label htmlFor="start_date" className="font-semibold">Start Date:</label>
           <div className="border rounded bg-slate-200">
             <input
               className="border-0 bg-transparent p-1 focus:outline-none w-full"
-              id="startDate"
+              id="start_date"
               type="date"
-              name="startDate"
-              value={formData.startDate}
+              name="start_date"
+              value={formData.start_date}
               onChange={handleChange}
               required
             />
@@ -189,14 +168,14 @@ export default function NewReminder({addReminder, onCancel}) {
         </div>
 
         <div className="flex justify-between">
-          <label htmlFor="startTime" className="font-semibold">Start Time:</label>
+          <label htmlFor="start_time" className="font-semibold">Start Time:</label>
           <div className="border rounded bg-slate-200">
             <input
               className="border-0 bg-transparent p-1 focus:outline-none w-full"
-              id="startTime"
+              id="start_time"
               type="time"
-              name="startTime"
-              value={formData.startTime}
+              name="start_time"
+              value={formData.start_time}
               onChange={handleChange}
               required
             />
@@ -204,14 +183,14 @@ export default function NewReminder({addReminder, onCancel}) {
         </div>
  
         <div className="flex justify-between">
-          <label htmlFor="endDate" className="font-semibold">End Date:</label>
+          <label htmlFor="end_date" className="font-semibold">End Date:</label>
             <div className="border rounded bg-slate-200">
               <input 
                 className="border-0 bg-transparent p-1 focus:outline-none w-full"
-                id="endDate"
+                id="end_date"
                 type="date"
-                name="endDate"
-                value={formData.endDate}
+                name="end_date"
+                value={formData.end_date}
                 onChange={handleChange}
                 required
               />

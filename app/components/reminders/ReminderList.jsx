@@ -6,8 +6,6 @@ import Reminder from './Reminder'
 // import NewReminder from './NewReminder'
 
 export default function ReminderList({reminders, onAddNewClick}) {
-
-
   return (
     <div className="container flex flex-col py-6 px-12 w-fit space-y-3 rounded-lg shadow-lg">
       <div className='flex flex-row justify-between'>
@@ -20,7 +18,7 @@ export default function ReminderList({reminders, onAddNewClick}) {
           Add New
         </button> 
       </div>
-      <div className='border rounded-lg overflow-hidden border-regal dark:border-french'>
+      <div className='border rounded-lg overflow-hidden border-regal dark:border-french '>
         <table className="table-auto w-full divide-y divide-gray-300 dark:divide-gray-700">
           <thead className="bg-regal text-left dark:bg-french">
             <tr className='divide-x-8 divide-transparent'>

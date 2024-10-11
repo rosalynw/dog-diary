@@ -12,8 +12,9 @@ export async function GET(req) {
           title,
           medication,
           dosage,
+          start_date,
           start_time,
-          end_time,
+          end_date,
           repeat_hours,
           pets (name)  -- Join to fetch the pet name
         `);
@@ -25,19 +26,13 @@ export async function GET(req) {
   
       // Format the data
       const formattedReminders = reminders.map(reminder => {
-        const startDateObj = new Date(reminder.start_time);
-        const endDateObj = new Date(reminder.end_time);
-  
-        const startDate = startDateObj.toLocaleDateString();  // Format as just the date
-        const startTime = startDateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });  // Extract the time
-        const endDate = endDateObj.toLocaleDateString();  // Format end date
-  
+        const startTimeObj = new Date(`1970-01-01T${reminder.start_time}Z`); // Use a fixed date
+        let start_time = startTimeObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+    
         return {
           ...reminder,
           petName: reminder.pets.name,  // Extract pet name from the joined pets table
-          startDate,   // Formatted start date
-          startTime,   // Formatted start time
-          endDate      // Formatted end date
+          start_time
         };
       });
 
@@ -58,8 +53,9 @@ export async function POST(req) {
       title,
       medication,
       dosage,
+      start_date,
       start_time,
-      end_time,
+      end_date,
       repeat_hours,
       notes
     } = body;
@@ -72,18 +68,20 @@ export async function POST(req) {
         title,
         medication,
         dosage,
+        start_date,
         start_time,
-        end_time,
+        end_date,
         repeat_hours,
         notes
       }
-    ]);
+    ])
+    .select();
     
     if (error) {
+      console.error("Supabase error:", error);
       return new Response(JSON.stringify({ error: error.message }), { status: 500 });
     }
-
-    return new Response(JSON.stringify({ reminder: data }), { status: 201 });
+    return new Response(JSON.stringify({ reminder: data[0] }), { status: 201 });
   } catch (error) {
     return new Response(JSON.stringify({ error: "Failed to create reminder" }), { status: 500 });
   }
