@@ -18,6 +18,9 @@ const config: Config = {
         regal: "#7D2C70",
         deep: "#3F3F6E",
       },
+      fontFamily: {
+        sans: ['var(--font-pacifico)']
+      },
     },
   },
   plugins: [],
