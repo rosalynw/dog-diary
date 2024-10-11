@@ -1,5 +1,8 @@
 'use client'
 
+// remove title of reminder and instead add notes that are only visible on single note view?
+// having title and medicine name feels a bit redundant?
+
 import { useEffect, useState } from "react";
 
 export default function NewReminder({addReminder, onCancel}) {

@@ -4,7 +4,16 @@ export async function GET(req) {
   try {
     const { data: pets, error } = await supabase
     .from('pets')
-    .select('*');
+    .select(`id, 
+      name, 
+      species, 
+      breed, 
+      age, 
+      food,
+      users (
+        name
+      )
+      `);
 
     if (error) {
       console.error("Error fetching pets:", error);

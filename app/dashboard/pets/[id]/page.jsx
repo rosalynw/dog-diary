@@ -3,46 +3,39 @@
 import NewReminder from '@/app/components/reminders/NewReminder';
 import GoBackButton from '@/app/components/Buttons/GoBackButton';
 import { camelCaseToReadable } from '@/utils/stringUtils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export default function Pet({ params }) {
+  const router = useRouter();
+  const { name } = params;
+  const [pet, setPet] = useState(null);
+  const [loading, setLoading ] = useState(true);
+
+  useEffect(() => {
+    if (name) {
+      const fetchPetData = async () => {
+        try {
+          const response = await fetch(`/api/pets/${name}`);
+          if (!response.ok) {
+            throw new Error('Failed to fetch pet data');
+          }
+          const data = await response.json();
+          console.log(data.pet);
+          setPet(data.pet);
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchPetData();
+    }
+  }, [name])
 
   function removePetAlert() {
     alert("Danger");
   }
-
-  const {petName} = params;
-  
-  const petData = {
-    Sparky: {
-      age: 5,
-      breed: 'Golden Retriever',
-      owner: 'Emily Johnson',
-      emergencyContact: '123-456-7890',
-      vetInfo: 'Local Vet Clinic',
-      food: 'Dry kibble, twice a day',
-      behavior: 'A friendly dog.',
-    },
-    Whiskers: {
-      age: 3,
-      breed: 'Siamese',
-      owner: 'Sarah Brown',
-      emergencyContact: '987-654-3210',
-      vetInfo: 'Cat Care Center',
-      food: 'Wet food, once a day',
-      behavior: 'Loves to play.',
-    },
-    Bert: {
-      age: 2,
-      breed: 'Bulldog',
-      owner: 'Alex Green',
-      emergencyContact: 'Bob White - 555-123-4567',
-      vetInfo: 'Paw & Claw Vet',
-      food: 'Raw diet',
-      behavior: 'Very lazy.',
-    },
-  };
-  const pet = petData[petName] || {};
 
     // State to control the visibility of the Reminder component
     const [showNewReminder, setShowNewReminder] = useState(false);
@@ -68,13 +61,9 @@ export default function Pet({ params }) {
               <img className="inline-block h-24 w-24 rounded-full" src="/images/cat.jpg" width={24} height={24}/>
             </div>
             <div className="grow">
-              <h1 className="font-bold text-4xl mb-4">{petName}</h1>
+              <h1 className="font-bold text-4xl mb-4">{name}</h1>
               <div className='space-y-2 mb-4'>
-                {Object.entries(pet).map(([key, value]) => (
-                  <p key={key}>
-                    <strong>{camelCaseToReadable(key)}:</strong> {value || 'N/A'}
-                  </p>
-                ))}
+                <h1>{}</h1>
               </div>
             </div>
             <button type="button" onClick={removePetAlert} className="font-semibold border border-regal hover:bg-regal hover:text-gray-300 dark:text-gray-300 rounded-lg py-2 px-6 h-fit">

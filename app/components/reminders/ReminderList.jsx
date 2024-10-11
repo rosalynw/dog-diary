@@ -21,7 +21,7 @@ export default function ReminderList({reminders, onAddNewClick}) {
       <div className='border rounded-lg overflow-auto border-regal dark:border-french'>
         <table className="table-auto w-full divide-y divide-gray-300 dark:divide-gray-700">
           <thead className="bg-regal text-left dark:bg-french">
-            <tr className='divide-x-8 divide-transparent'>
+            <tr>
               <th scope='col' className='sticky top-0 py-2 px-2 bg-regal text-gray-300 text-center'>Title</th>
               <th scope='col' className='sticky top-0 py-2 px-2 bg-regal text-gray-300 text-center'>Pet</th>
               <th scope='col' className='sticky top-0 py-2 px-2 bg-regal text-gray-300 text-center'>Medicine</th>
