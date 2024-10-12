@@ -8,21 +8,21 @@ import { useRouter } from 'next/navigation';
 
 export default function Pet({ params }) {
   const router = useRouter();
-  const { name } = params;
-  const [pet, setPet] = useState(null);
+  const { id } = params;
+  const [pets, setPets] = useState([]);
   const [loading, setLoading ] = useState(true);
 
   useEffect(() => {
-    if (name) {
       const fetchPetData = async () => {
         try {
-          const response = await fetch(`/api/pets/${name}`);
+          const response = await fetch(`/api/pets/${id}`);
+          const data = await response.json();
+          console.log(data);
           if (!response.ok) {
+            console.log(data.pet);
             throw new Error('Failed to fetch pet data');
           }
-          const data = await response.json();
-          console.log(data.pet);
-          setPet(data.pet);
+          setPets(data.pets);
         } catch (error) {
           console.error(error);
         } finally {
@@ -30,12 +30,13 @@ export default function Pet({ params }) {
         }
       };
       fetchPetData();
-    }
-  }, [name])
+  }, [id])
 
   function removePetAlert() {
     alert("Danger");
   }
+
+  console.log(pets);
 
     // State to control the visibility of the Reminder component
     const [showNewReminder, setShowNewReminder] = useState(false);
@@ -60,12 +61,18 @@ export default function Pet({ params }) {
             <div>
               <img className="inline-block h-24 w-24 rounded-full" src="/images/cat.jpg" width={24} height={24}/>
             </div>
+            {pets.map((pet) => (
             <div className="grow">
-              <h1 className="font-bold text-4xl mb-4">{name}</h1>
+              <h1 className="font-bold text-4xl mb-4">{pet.name}</h1>
               <div className='space-y-2 mb-4'>
-                <h1>{}</h1>
+              <p className='font-bold'>Owner: {pet.users.first_name} {pet.users.last_name}</p>
+              <p className='font-bold'>Breed: {pet.age}</p>
+              <p>Age:</p>
+              <p>Food:</p>
+              <p>Behavior:</p>
               </div>
             </div>
+            ))}
             <button type="button" onClick={removePetAlert} className="font-semibold border border-regal hover:bg-regal hover:text-gray-300 dark:text-gray-300 rounded-lg py-2 px-6 h-fit">
               Remove Pet
             </button>
