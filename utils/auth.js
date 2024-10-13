@@ -1,5 +1,6 @@
 import { supabase } from "@/utils/supabaseClient";
 
+
 export const signUp = async (email, password, captchaToken, firstName, lastName) => {
   const { data, error } = await supabase.auth.signUp({
     email,
@@ -19,8 +20,11 @@ export const signUp = async (email, password, captchaToken, firstName, lastName)
   }
 
   console.log("User signed up:", data);
-  return data;
+
+  const userId = data.user.id;
+
   
+  return data;
 };
 
 export const signIn = async (email, password, captchaToken) => {

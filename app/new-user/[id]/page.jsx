@@ -1,8 +1,10 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { getUserProfile, signOut } from "@/utils/auth";
+import { useRouter, useSearchParams } from "next/navigation";
+import { signOut } from "@/utils/auth";
+import useSWR from "swr";
+import { fetcher } from "@/utils/fetcher";
 import { Pacifico } from "next/font/google";
 
 const pacifico = Pacifico({
@@ -11,37 +13,25 @@ const pacifico = Pacifico({
   variable: "--font-pacifico",
 });
 
-export default function CreateProfile({user}) {
+export default function CreateProfile({params}) {
   const router = useRouter();
-  const { email, firstName, lastName } = user;
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
+  const {id} = params;
 
-  // // Wait for the query to be available and update state
-  // useEffect(() => {
-  //   // Check if query parameters are available
-  //   if (router.query && Object.keys(router.query).length > 0) {
-  //     const { email, firstName, lastName } = router.query;
+  console.log(id);
 
-  //     setUserInfo({
-  //       email: email || "", // Fallback to empty string if undefined
-  //       firstName: firstName || "",
-  //       lastName: lastName || "",
-  //     });
-  //   }
-  // }, [router.query]);
+  const { data: users, error, isLoading } = useSWR(`/api/users/${id}`, fetcher);
+
+  console.log(users)
 
   useEffect(() => {
-    // Ensure query parameters are available
-    if (router.query) {
-      const { email, firstName, lastName } = router.query;
-
-      console.log(email);      // Outputs the email from the query string
-      console.log(firstName);  // Outputs the first name from the query string
-      console.log(lastName);   // Outputs the last name from the query string
+    if (users) {
+      console.log("Fetched user data:", users);
+    } else if (error) {
+      console.error("Error fetching user data:", error);
     }
-  }, [router.query]); // Re-run the effect when router.query changes
-
+  }, [users, error]);
   const handleSignOut = async () => {
     try {
       await signOut();
@@ -56,11 +46,10 @@ export default function CreateProfile({user}) {
     setPhoneNumber(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Add logic for submitting the profile, e.g., saving to the database
-    console.log("Profile data submitted:", { ...userInfo, phoneNumber });
-  };
+    // Handle loading state
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }  
 
   return (
     <div>
@@ -74,12 +63,12 @@ export default function CreateProfile({user}) {
               </div>
               <div className="space-y-12">
                 <h1 className={`${pacifico.variable} font-sans text-4xl text-center py-5`}>Create Profile</h1>
-                <form className="grid grid-cols-2" onSubmit={handleSubmit}>
+                <form className="grid grid-cols-2">
                   <label className="mr-2">First Name:
                     <input
                       className="p-2 rounded-lg w-full"
                       type="text"
-                      value={firstName}
+                      value={users.first_name}
                       readOnly
                     />
                   </label>
@@ -87,7 +76,7 @@ export default function CreateProfile({user}) {
                     <input
                       className="p-2 rounded-lg w-full"
                       type="text"
-                      value={userInfo.lastName}
+                      value={users.last_name}
                       readOnly
                     />
                   </label>
@@ -95,11 +84,11 @@ export default function CreateProfile({user}) {
                     <input
                       className="p-2 rounded-lg w-full"
                       type="email"
-                      value={userInfo.email}
+                      value={users.email}
                       readOnly
                     />
                   </label>
-                  <label className="col-span-2 py-2">Phone:
+                  <label className="col-span-2 py-2">Phone: <span className="text-slate-400">(optional)</span>
                     <input
                       className="p-2 rounded-lg w-full"
                       type="tel"
@@ -132,19 +121,3 @@ export default function CreateProfile({user}) {
     </div>
   );
 };
-
-// Fetch user data on server side
-export async function getServerSideProps(context) {
-  const { email } = context.query; // Assuming you're passing email as a query param
-
-  // Simulating a fetch request to get user data based on email
-  const user = await getUserProfile(email) // Replace this with your API call to get user data
-    .catch(err => null);
-
-  return {
-    props: {
-      user, // Pass user data to the page
-    },
-  };
-}
-

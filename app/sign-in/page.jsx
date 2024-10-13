@@ -36,9 +36,10 @@ export default function SignIn() {
         setMessage("Logged in successfully!");
         router.push("/dashboard");
       } else {
-        await signUp(email, password, token, firstName, lastName);
+       const data = await signUp(email, password, token, firstName, lastName);
+        console.log(data);
         setMessage("Signup successful!");
-        router.push(`/new-user?email=${encodeURIComponent(email)}&firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}`);
+        router.push(`/new-user/${data.user.id}`)
       }
     } catch (error) {
       console.error('Error during signup/login:', error);
@@ -129,6 +130,7 @@ export default function SignIn() {
                 <HCaptcha
                   ref={captcha}
                   sitekey="b6128d2c-4112-4fb6-80d8-ca0228ae63be"
+                  
                   onVerify={(token) => {
                     setCaptchaToken(token)
                   }}
