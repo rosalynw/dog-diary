@@ -6,8 +6,7 @@ import { Pacifico } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
 import HCaptcha from "@hcaptcha/react-hcaptcha";
-import {signIn} from "@/utils/auth"
-import {signUp} from "@/utils/auth"
+import {signIn, signUp, getUserProfile} from "@/utils/auth"
 
 const pacifico = Pacifico({
   weight: "400",
@@ -37,9 +36,9 @@ export default function SignIn() {
         setMessage("Logged in successfully!");
         router.push("/dashboard");
       } else {
-        await signUp(email, password, token, firstName, lastName);
+        const { user } = await signUp(email, password, token, firstName, lastName);
         setMessage("Signup successful! Check your email for confirmation.");
-        router.push("/profile")
+        router.push(`/new-user?userId=${user.id}`)
       }
     } catch (error) {
       setMessage(error.message);

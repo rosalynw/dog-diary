@@ -36,6 +36,18 @@ export const signIn = async (email, password, captchaToken) => {
   return data;
 };
 
+export const getUserProfile = async (userId) => {
+  const { data, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("id", userId)
+    .single();
+
+  if (error) throw error;
+  return data;
+};
+
+
 export const signOut = async () => {
   const { error } = await supabase.auth.signOut();
   if (error) throw error;
