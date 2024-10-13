@@ -36,9 +36,9 @@ export default function SignIn() {
         setMessage("Logged in successfully!");
         router.push("/dashboard");
       } else {
-        await signUp(email, password, token);
-        setMessage("Signup successful! Check your email for confirmation.");
-        router.push(`/new-user`)
+        await signUp(email, password, token, firstName, lastName);
+        setMessage("Signup successful!");
+        router.push(`/new-user?email=${encodeURIComponent(email)}&firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}`);
       }
     } catch (error) {
       console.error('Error during signup/login:', error);
@@ -79,6 +79,26 @@ export default function SignIn() {
               </h1>
 
               <form className="flex flex-col space-y-3" onSubmit={handleSubmit}>
+              {!isLogin && (
+                  <>
+                    <input
+                      className="p-1 rounded-lg focus:outline-none focus:ring-regal focus:ring-2"
+                      type="text"
+                      placeholder="First Name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      required
+                    />
+                    <input
+                      className="p-1 rounded-lg focus:outline-none focus:ring-regal focus:ring-2"
+                      type="text"
+                      placeholder="Last Name"
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      required
+                    />
+                  </>
+                )}
 
                 <input
                   className="p-1 rounded-lg focus:outline-none focus:ring-regal focus:ring-2"
