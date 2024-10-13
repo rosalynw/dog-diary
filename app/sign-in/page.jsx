@@ -36,12 +36,13 @@ export default function SignIn() {
         setMessage("Logged in successfully!");
         router.push("/dashboard");
       } else {
-        const { user } = await signUp(email, password, token, firstName, lastName);
+        await signUp(email, password, token);
         setMessage("Signup successful! Check your email for confirmation.");
-        router.push(`/new-user?userId=${user.id}`)
+        router.push(`/new-user`)
       }
     } catch (error) {
-      setMessage(error.message);
+      console.error('Error during signup/login:', error);
+      setMessage(error.message || "An unexpected error occurred."); // Set error message
       captcha.current.resetCaptcha()
     }
   };
@@ -78,26 +79,7 @@ export default function SignIn() {
               </h1>
 
               <form className="flex flex-col space-y-3" onSubmit={handleSubmit}>
-                {!isLogin && (
-                  <>
-                <input
-                  className="p-1 rounded-lg focus:outline-none focus:ring-regal focus:ring-2"
-                  type="text"
-                  placeholder="First Name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  required
-                />
-                <input
-                  className="p-1 rounded-lg focus:outline-none focus:ring-regal focus:ring-2"
-                  type="text"
-                  placeholder="Last Name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  required
-                />
-                </>
-                )}
+
                 <input
                   className="p-1 rounded-lg focus:outline-none focus:ring-regal focus:ring-2"
                   type="email"
@@ -127,7 +109,6 @@ export default function SignIn() {
                 <HCaptcha
                   ref={captcha}
                   sitekey="b6128d2c-4112-4fb6-80d8-ca0228ae63be"
-                  size="invisible"
                   onVerify={(token) => {
                     setCaptchaToken(token)
                   }}
