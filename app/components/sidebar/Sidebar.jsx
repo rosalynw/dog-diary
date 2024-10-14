@@ -4,6 +4,14 @@ import DarkMode from "../darkMode/Toggle";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Menu from "./Menu";
 import Link from "next/link";
+import { Pacifico } from "next/font/google";
+
+const pacifico = Pacifico({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-pacifico",
+});
+
 
 export default function Sidebar() {
 
@@ -27,10 +35,10 @@ export default function Sidebar() {
 
 
   return (
-    <aside className="sidebar h-screen min-w-72 border-regal border-r text-white">
-      <header className="header flex flex-row h-14">
+    <aside className="sidebar h-screen min-w-72 border-regal border-r text-white dark:border-french">
+      <header className="header flex flex-row h-20">
         <div className="flex justify-between w-full py-2 px-5 items-center">
-          <Link href="/dashboard" className="logo text-2xl font-bold text-white hover:ring-2 dark:hover:text-white">
+          <Link href="/dashboard" className={`${pacifico.variable} font-sans logo text-3xl font-bold text-white hover:underline px-2 underline-offset-8`}>
             Dog Diary
           </Link>
           <div className="flex flex-row space-x-5">

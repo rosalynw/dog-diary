@@ -11,7 +11,7 @@ const pacifico = Pacifico({
   variable: "--font-pacifico",
 });
 
-export default function AddPet() {
+export default function AddPet({handleSignOut}) {
   return (
     <div>
       <div className="relative flex min-h-screen items-center justify-center">
@@ -21,41 +21,70 @@ export default function AddPet() {
             <div className="self-center space-y-4 text-center">
               <h3 className="font-semibold text-regal">Profile picture</h3>
               <img className="inline-block h-60 w-60 rounded-full" src="/images/cat.jpg" width={100} height={100}/>
-              
             </div>
-            <div className="space-y-12">
-              <h1 className={`${pacifico.variable} font-sans text-4xl text-center py-5`}>Add Pet</h1>
+            <div className="space-y-8">
+              <h1 className={`${pacifico.variable} font-sans text-5xl text-center py-5`}>Add a Pet</h1>
                     <form className="grid grid-cols-2">
-                      <label className="mr-2">First Name:
+                      <label className="mr-2 py-2" ht>Name:
                       <input
                         className="p-2 rounded-lg w-full"
                         type="text"
-                        value={profile.first_name}
+                       
                         readOnly
                       />
                       </label>
-                      <label className="ml-2">Last Name:
+                      <label className="ml-2 py-2">Species:
                       <input
                         className="p-2 rounded-lg w-full"
                         type="text"
-                        value={profile.last_name}
-                        readOnly
+                        name="species"
+                        id="species"
+                        placeholder="Dog"
                       />
                       </label>
-                      <label className="col-span-2 py-2">Email:
+                      <label className="mr-2 py-2" htmlFor="breed">Breed:
                       <input
                         className="p-2 rounded-lg w-full"
-                        type="email"
-                        value={profile.email}
-                        readOnly
+                        type="text"
+                        name="breed"
+                        id="breed"
+                        placeholder="Golden Doodle"
                       />
                       </label>
-                      <label className="col-span-2 py-2">Phone:
+                      <label className="ml-2 py-2">Age:
+                      <input
+                        className="p-2 rounded-lg w-full"
+                        type="number"
+                        name="age"
+                        id="age"
+                        placeholder="8 years/ 6 months"
+                      />
+                      </label>
+                      <label className="mr-2 py-2" htmlFor="food">Food:
                       <input
                         className="p-2 rounded-lg w-full"
                         type="tel"
-                        value={profile.phone_number}
-                        placeholder="123-456-7890"
+                        name="food"
+                        id="food"
+                        placeholder="Purina kibble"
+                      />
+                      </label>
+                      <label className="ml-2 py-2" htmlFor="birthday">Birthday:
+                      <input
+                        className="p-2 rounded-lg w-full"
+                        type="date"
+                        name="birthday"
+                        id="birthday"
+                        placeholder="Purina kibble"
+                      />
+                      </label>
+                      <label className="col-span-2 py-2" htmlFor="behavior">Behavior:
+                      <textarea
+                        className="p-2 rounded-lg w-full"
+                        type="textarea"
+                        name="behavior"
+                        id="behavior"
+                        placeholder="Purina kibble"
                       />
                       </label>
                     </form>
@@ -64,14 +93,14 @@ export default function AddPet() {
               Submit
             </button>
             <button
-              className="font-semibold border border-regal hover:bg-regal hover:text-gray-300 dark:text-gray-300 rounded-lg py-2 px-6 h-fit"
+              className="font-semibold border border-regal hover:bg-regal hover:text-gray-300 dark:text-gray-300 dark:border-french dark:bg-zinc-700 dark:hover:bg-regal rounded-lg py-2 px-6 h-fit"
               onClick={handleSignOut} 
               type="button"
             >
               Cancel
             </button>
           </div>
-                    {message && <p>{message}</p>}
+                    {/* {message && <p>{message}</p>} */}
             </div>
           </div>
         </div>

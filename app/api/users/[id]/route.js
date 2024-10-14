@@ -44,16 +44,6 @@ export async function POST(req, {params}) {
   const file = formData.get('file');
   const phone_number = formData.get('phone_number');
 
-  console.log(file, phone_number);
-
-      // Check if file and phone number exist
-      if (!file || !phone_number) {
-        return new Response(JSON.stringify({ error: "File and phone number are required." }), {
-            status: 400,
-            headers: { "Content-Type": "application/json" },
-        });
-    }
-
   try {
     const fileName = `${id}-${file.name}`;
     const { data, error: uploadError } = await supabase.storage

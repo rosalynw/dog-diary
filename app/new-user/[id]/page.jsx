@@ -6,6 +6,8 @@ import useSWR, { preload } from "swr";
 import { fetcher } from "@/utils/fetcher";
 import { Pacifico } from "next/font/google";
 import ImageUpload from "@/app/components/images/ImageUpload";
+import { Skeleton } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 const pacifico = Pacifico({
   weight: "400",
@@ -14,6 +16,7 @@ const pacifico = Pacifico({
 });
 
 export default function CreateProfile({ params }) {
+  const router = useRouter();
   const [selectedFile, setSelectedFile] = useState(null);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
@@ -73,6 +76,7 @@ export default function CreateProfile({ params }) {
       console.log(result);
       if (response.ok) {
         setMessage("Profile updated successflly");
+        router.push()
       } else {
         setMessage(result.error || "An error occurred.");
       }
@@ -84,7 +88,15 @@ export default function CreateProfile({ params }) {
 
   // Handle loading state
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+    <div className="min-h-screen">
+      <div className="flex justify-center">
+        <div className="flex items-center">
+          <Skeleton variant="rounded" width={896} height={474} animation="wave" />
+        </div>
+      </div>
+    </div>
+    );
   }
 
   return (
