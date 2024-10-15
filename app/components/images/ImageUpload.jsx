@@ -24,8 +24,10 @@ export default function ImageUpload({ onFileSelect }) {
 
   return (
     <div className="profile-container h-fit">
-      <div className="">
-      <h3 className="font-semibold text-regal">Profile picture</h3>
+      <div className="space-y-5">
+        <h3 className="font-semibold text-regal dark:text-slate-300">
+          Profile picture
+        </h3>
         {imagePreview ? (
           <div className="">
             <img
@@ -40,7 +42,7 @@ export default function ImageUpload({ onFileSelect }) {
           </div>
         ) : (
           <label className="hover:cursor-pointer h-60 w-60 rounded-full border-dashed border-2 flex justify-center">
-            <p className="flex items-center">Upload Image</p>
+            <p className="flex items-center">Upload an Image</p>
             <input
               name="file"
               type="file"
@@ -51,14 +53,15 @@ export default function ImageUpload({ onFileSelect }) {
           </label>
         )}
       </div>
-      <div >
-        <button
-          className="my-4 border border-regal px-4 py-2 rounded-lg"
-          disabled={!imagePreview}
-          onClick={onCancelFile}
-        >
-          Cancel file
-        </button>
+      <div>
+        {imagePreview && (
+          <button
+            className="my-4 border border-regal px-4 py-2 rounded-lg font-semibold dark:text-slate-300 dark:bg-regal dark:hover:text-slate-200"
+            onClick={onCancelFile}
+          >
+            Cancel file
+          </button>
+        )}
       </div>
     </div>
   );

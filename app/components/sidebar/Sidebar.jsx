@@ -5,6 +5,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Menu from "./Menu";
 import Link from "next/link";
 import { Pacifico } from "next/font/google";
+import useSWR from "swr";
+import fetcher from "@/utils/fetcher";
 
 const pacifico = Pacifico({
   weight: "400",
@@ -15,12 +17,14 @@ const pacifico = Pacifico({
 
 export default function Sidebar() {
 
-  const petMenuItems = [
-    { name: 'Sparky'},
-    { name: 'Whiskers'},
-    { name: 'Bert'},
-    { name: 'Add Pet'},
-  ];
+  // const petMenuItems = [
+  //   { name: 'Sparky'},
+  //   { name: 'Whiskers'},
+  //   { name: 'Bert'},
+  //   { name: 'Add Pet'},
+  // ];
+
+  const { data: pets, error, isLoading } = useSWR(`/api/pets`, fetcher);
 
   const ownersMenuItems = [
     { name: 'Emily Johnson'},
@@ -50,7 +54,7 @@ export default function Sidebar() {
         </div>
       </header>
       <nav className="flex flex-col w-full">
-        <Menu title="Pets" submenuItems={petMenuItems} />
+        <Menu title="Pets" submenuItems={pets} />
         <Menu title="Owners" submenuItems={ownersMenuItems} />
         <Menu title="Account" submenuItems={accountMenuItems} />
       </nav>

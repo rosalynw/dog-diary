@@ -76,7 +76,7 @@ export default function CreateProfile({ params }) {
       console.log(result);
       if (response.ok) {
         setMessage("Profile updated successflly");
-        router.push()
+        router.push('/dashboard/pets/add-pet');
       } else {
         setMessage(result.error || "An error occurred.");
       }
@@ -103,8 +103,8 @@ export default function CreateProfile({ params }) {
     <div>
       <div className="relative flex min-h-screen items-center justify-center">
         <div className="flex items-center space-x-10 space-y-4">
-          <div className="container flex flex-col py-6 pr-12 pl-4 space-y-3 w-fit max-w-4xl rounded-lg shadow-lg">
-            <div className="self-center space-y-4 text-center">
+          <div className="container flex flex-col py-6 pr-4 pl-4 space-y-3 w-fit max-w-4xl rounded-lg shadow-lg">
+            <div className="space-y-4 text-center">
               <form className="grid grid-cols-2" onSubmit={handleSubmit}>
                 <div className="flex items-center justify-center">
                   <ImageUpload onFileSelect={handleFileSelect} />
