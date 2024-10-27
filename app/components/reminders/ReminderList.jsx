@@ -18,8 +18,8 @@ export default function ReminderList({reminders, onAddNewClick}) {
           Add New
         </button> 
       </div>
-      <div className='border rounded-lg overflow-auto border-regal dark:border-french'>
-        <table className="table-auto w-full divide-y divide-gray-300 dark:divide-gray-700">
+      <div className='border rounded-lg relative overflow-auto border-regal dark:border-french'>
+        <table className="table-fixed w-full divide-y max-w-5xl divide-gray-300 dark:divide-gray-700">
           <thead className="bg-regal text-left dark:bg-french">
             <tr>
               <th scope='col' className='sticky top-0 py-2 px-2 bg-regal text-gray-300 text-center'>Title</th>
@@ -38,8 +38,8 @@ export default function ReminderList({reminders, onAddNewClick}) {
                 <Reminder key={index} reminder={reminder} />
             ))
             ) : (
-              <tr>
-                <td colSpan="5" className='p-2'>No reminders added yet.</td>
+              <tr className='dark:bg-gray-500'>
+                <td colSpan="8" className='p-2 py-3 text-center font-semibold'>No reminders added yet.</td>
               </tr>
             )}
           </tbody>
