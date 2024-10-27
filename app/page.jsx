@@ -4,6 +4,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+//add supabase get session to foward already authenticated users to their dashboard.
+
 export default function Home() {
   const router = useRouter();
 

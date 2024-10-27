@@ -28,7 +28,7 @@ export default function SignIn() {
 
     try {
       if (isLogin) {
-        await signIn(email, password, token);
+        await signIn(email, password);
         setMessage("Logged in successfully!");
         router.push("/dashboard");
       } else {
@@ -40,7 +40,6 @@ export default function SignIn() {
     } catch (error) {
       console.error("Error during signup/login:", error);
       setMessage(error.message || "An unexpected error occurred."); // Set error message
-      captcha.current.resetCaptcha();
     }
   };
 

@@ -64,7 +64,6 @@ export default function CreateProfile({ params }) {
       formData.append('file', selectedFile);
       formData.append('phone_number', phoneNumber)
     
-
     console.log("Form Data", formData);
     try {
       const response = await fetch(`/api/users/${id}`, {
@@ -89,7 +88,7 @@ export default function CreateProfile({ params }) {
   // Handle loading state
   if (isLoading) {
     return (
-    <div className="min-h-screen">
+    <div className="relative flex min-h-screen items-center justify-center">
       <div className="flex justify-center">
         <div className="flex items-center">
           <Skeleton variant="rounded" width={896} height={474} animation="wave" />
@@ -102,7 +101,10 @@ export default function CreateProfile({ params }) {
   return (
     <div>
       <div className="relative flex min-h-screen items-center justify-center">
-        <div className="flex items-center space-x-10 space-y-4">
+        <div className="flex flex-col items-center space-x-10 space-y-4">
+          <div className="text-regal font-semibold">
+            Let's create your user profile!
+          </div>
           <div className="container flex flex-col py-6 pr-4 pl-4 space-y-3 w-fit max-w-4xl rounded-lg shadow-lg">
             <div className="space-y-4 text-center">
               <form className="grid grid-cols-2" onSubmit={handleSubmit}>

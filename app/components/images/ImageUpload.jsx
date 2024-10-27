@@ -56,7 +56,7 @@ export default function ImageUpload({ onFileSelect }) {
       <div>
         {imagePreview && (
           <button
-            className="my-4 border border-regal px-4 py-2 rounded-lg font-semibold dark:text-slate-300 dark:bg-regal dark:hover:text-slate-200"
+            className="my-4 border border-regal px-4 py-2 rounded-lg font-semibold hover:bg-regal hover:text-slate-300 dark:text-slate-300 dark:bg-regal dark:hover:text-slate-200"
             onClick={onCancelFile}
           >
             Cancel file

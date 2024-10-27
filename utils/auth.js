@@ -1,12 +1,11 @@
 import { supabase } from "@/utils/supabaseClient";
 
 
-export const signUp = async (email, password, captchaToken, firstName, lastName) => {
+export const signUp = async (email, password, firstName, lastName) => {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: { 
-      captchaToken,
       data: {
         first_name: firstName,
         last_name: lastName,
