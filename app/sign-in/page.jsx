@@ -135,9 +135,7 @@ export default function SignIn() {
             <p className="text-sm text-slate-500 text-center">or</p>
             <hr />
             <p className="text-sm text-slate-500 text-center"> Register with</p>
-            <div className="self-center border-2 rounded-lg py-2 px-4 border-regal mt-4 hover:bg-regal font-semibold">
               <SignInButton />
-            </div>
           </div>
         </div>
       </div>
