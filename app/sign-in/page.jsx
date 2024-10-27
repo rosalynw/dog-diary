@@ -5,8 +5,7 @@ import DarkMode from "@/app/components/darkMode/Toggle";
 import { Pacifico } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
-import HCaptcha from "@hcaptcha/react-hcaptcha";
-import {signIn, signUp, getUserProfile} from "@/utils/auth"
+import { signIn, signUp } from "@/utils/auth";
 
 const pacifico = Pacifico({
   weight: "400",
@@ -16,7 +15,6 @@ const pacifico = Pacifico({
 
 export default function SignIn() {
   const captcha = useRef(null);
-  const [captchaToken, setCaptchaToken] = useState();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,22 +27,20 @@ export default function SignIn() {
     e.preventDefault();
 
     try {
-      const token = captcha.current.getResponse();
-      setCaptchaToken(token);
       if (isLogin) {
         await signIn(email, password, token);
         setMessage("Logged in successfully!");
         router.push("/dashboard");
       } else {
-       const data = await signUp(email, password, token, firstName, lastName);
+        const data = await signUp(email, password, firstName, lastName);
         console.log(data);
         setMessage("Signup successful!");
-        router.push(`/new-user/${data.user.id}`)
+        router.push(`/new-user/${data.user.id}`);
       }
     } catch (error) {
-      console.error('Error during signup/login:', error);
+      console.error("Error during signup/login:", error);
       setMessage(error.message || "An unexpected error occurred."); // Set error message
-      captcha.current.resetCaptcha()
+      captcha.current.resetCaptcha();
     }
   };
 
@@ -61,8 +57,8 @@ export default function SignIn() {
     <main className="m-0 flex flex-row">
       <div className="flex w-5/12 bg-regal m-0 min-h-screen text-white justify-center">
         <div className="flex items-center">
-          <div className="space-y-4">
-            <h1 className={`${pacifico.variable} font-sans text-8xl py-`}>
+          <div className="space-y-4 px-4">
+            <h1 className={`${pacifico.variable} font-sans text-8xl`}>
               Dog Diary
             </h1>
             <h3 className="font-sans text-xl text-center border-t-2 border-white py-10">
@@ -80,7 +76,7 @@ export default function SignIn() {
               </h1>
 
               <form className="flex flex-col space-y-3" onSubmit={handleSubmit}>
-              {!isLogin && (
+                {!isLogin && (
                   <>
                     <input
                       className="p-1 rounded-lg focus:outline-none focus:ring-regal focus:ring-2"
@@ -126,15 +122,6 @@ export default function SignIn() {
                     {isLogin ? "Login" : "Sign Up"}
                   </button>
                 </div>
-
-                <HCaptcha
-                  ref={captcha}
-                  sitekey="b6128d2c-4112-4fb6-80d8-ca0228ae63be"
-                  
-                  onVerify={(token) => {
-                    setCaptchaToken(token)
-                  }}
-                />
               </form>
 
               <button
