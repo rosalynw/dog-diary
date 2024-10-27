@@ -2,12 +2,20 @@ import { supabase } from "@/utils/supabaseClient"
 
 export async function GET(req) {
 
-  const { user } = await supabase.auth.getUser();
+  const { searchParams } = new URL(req.url);
+  const userId = searchParams.get("user_id");
 
-  const {data:pets, error } = await supabase
+  if (!userId) {
+    return new Response(JSON.stringify({ error: userError.message }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  const {data: pets, error } = await supabase
   .from('pets')
   .select('*')
-  .eq('user_id', user.id);
+  .eq('user_id', userId);
 
   if (error) {
     // If there's an error, return a 500 status
@@ -31,13 +39,14 @@ export async function POST(req) {
   const species = formData.get('species');
   const breed = formData.get('breed');
   const birthday = formData.get('birthday');
+  const behavior = formData.get('behavior');
   const food = formData.get('food');
   const userId = formData.get('user_id');
 
   try {
     const { data, error } = await supabase
       .from('pets')
-      .insert([{ name: petName, age, user_id: userId, species, breed, birthday, food}]);
+      .insert([{ name: petName, age, user_id: userId, species, breed, birthday, food, behavior}]);
 
       if (error) {
         return new Response(JSON.stringify({ error: error.message }), {

@@ -4,7 +4,7 @@ import { KeyboardArrowDownRounded, KeyboardArrowUpRounded } from "@mui/icons-mat
 import Link from "next/link";
 import { useState } from "react";
 
-export default function Menu({ title, submenuItems}) {
+export default function Menu({ title, submenuItems, }) {
   const [isSubmenuOpen, setSubmenuIsOpen] = useState(false);
 
   const toggleSubmenu = () => {
@@ -38,14 +38,19 @@ export default function Menu({ title, submenuItems}) {
       </button>
 
         {isSubmenuOpen && hasSubmenu && (
-          <ul className="submenuw-full bg-slate-300 dark:bg-slate-500">
+          <ul className="submenuw-full border-b dark:bg-slate-500">
             {submenuItems.map((item) => (
-               <Link href={`/dashboard/${title.toLowerCase()}/${item.name}`}>
-              <li key={item.name} className="py-1  pl-6  text-black font-semibold text-sm hover:bg-slate-500 dark:hover:bg-slate-700 dark:hover:text-slate-200 cursor-pointer">
-                {/* Wrap this in a Link later for routing use "to={item.route}" */}
+              <li key={item.name} className="py-1 pl-6 text-black font-semibold text-sm hover:bg-slate-300 dark:hover:bg-slate-700 dark:hover:text-slate-200 cursor-pointer">
+              {item.link ? (
+               <Link href={item.link} className="w-full">
                {item.name}
-              </li>
               </Link>
+              ) : (
+                <Link href={`/dashboard/${title.toLowerCase()}/${item.name}`} className="w-full">
+                 {item.name}
+                </Link>
+              )}
+            </li>
             ))}
           </ul>
         )}

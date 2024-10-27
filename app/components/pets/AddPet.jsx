@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { getUserProfile, signOut } from "@/utils/auth";
+import { signOut } from "@/utils/auth";
+import { useRouter } from "next/navigation";
 import { Pacifico } from "next/font/google";
 import ImageUpload from "../images/ImageUpload";
 
@@ -13,14 +13,15 @@ const pacifico = Pacifico({
 });
 
 export default function AddPet({userId}) {
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);;
+  const [message, setMessage ] = useState("");
 
 
-  const handleSignOut = async () => {
+  const handleCancel = async () => {
     try {
       await signOut();
       setMessage("Logged out successfully!");
-      router.push("/sign-in");
+      router.push("/dashboard");
     } catch (error) {
       setMessage(error.message);
     }
@@ -41,7 +42,7 @@ export default function AddPet({userId}) {
 
     console.log("Form Data", formData);
     try {
-      const response = await fetch(`/api/pets/`, {
+      const response = await fetch(`/api/pets`, {
         method: "POST",
         body: formData,
       });
@@ -70,9 +71,9 @@ export default function AddPet({userId}) {
                 <div className="flex items-center justify-center">
                   <ImageUpload onFileSelect={handleFileSelect} />
                 </div>
-                <div div className="grid grid-cols-2 px-4 space-y-5">
+                <div className="grid grid-cols-2 px-4 space-y-5">
                   <h1
-                    className={`${pacifico.variable} font-sans text-5xl text-center py-5 col-span-2`}
+                  className={`${pacifico.variable} font-sans text-5xl text-center py-5 col-span-2`}
                   >
                     Add a Pet
                   </h1>
@@ -153,7 +154,7 @@ export default function AddPet({userId}) {
                 </button>
                 <button
                   className="font-semibold border border-regal hover:bg-regal hover:text-gray-300 dark:text-gray-300 dark:border-french dark:bg-zinc-700 dark:hover:bg-regal rounded-lg py-2 px-6 h-fit"
-                  onClick={handleSignOut}
+                  onClick={handleCancel}
                   type="button"
                 >
                   Cancel

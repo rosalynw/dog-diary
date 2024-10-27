@@ -18,20 +18,29 @@ const pacifico = Pacifico({
 
 
 export default function Sidebar() {
-
+  const [pets, setPets] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
 
-  const { data: pets, error, isLoading } = useSWR(`/api/pets`, fetcher);
+  //const { data: pets, error, isLoading } = useSWR(`/api/pets`, fetcher);
 
   const retrieveUser = async () => {
     try {
       const { data: {user}, error } = await supabase.auth.getUser();
-      if (user.aud === "authenticated") {
+      if (user) {
         const response = await fetch(`/api/users/${user.id}`);
         const result = await response.json();
         if (error) throw error;
         setProfileImage(result.profile_image);
       }
+
+      const petsResponse = await fetch(`/api/pets?user_id=${user.id}`);
+      console.log(petsResponse);
+      if (!petsResponse.ok) {
+        throw new Error(`Failed to fetch pets: ${petsResponse.statusText}`);
+      }
+      const petsData = await petsResponse.json();
+      console.log(petsData.pets);
+      setPets(petsData.pets);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -79,7 +88,7 @@ export default function Sidebar() {
         </div>
       </header>
       <nav className="flex flex-col w-full">
-        <Menu title="Pets" submenuItems={pets} />
+        <Menu title="Pets" submenuItems={[...pets || [], { name: 'Add Pet', link: '/dashboard/pets/add-pet' }]} />
         <Menu title="Owners" submenuItems={ownersMenuItems} />
         <Menu title="Account" submenuItems={accountMenuItems} />
       </nav>
