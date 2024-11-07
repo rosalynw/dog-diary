@@ -6,6 +6,7 @@ import { Pacifico } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
 import { signIn, signUp } from "@/utils/auth";
+import Link from "next/link";
 
 const pacifico = Pacifico({
   weight: "400",
@@ -123,6 +124,8 @@ export default function SignIn() {
                 </div>
               </form>
 
+              <Link href="/reset-password">Forgot Password?</Link>
+
               <button
                 className="py-2 text-sm"
                 onClick={() => setIsLogin(!isLogin)}
@@ -133,7 +136,7 @@ export default function SignIn() {
             </div>
             <p className="text-sm text-slate-500 text-center">or</p>
             <hr />
-            <p className="text-sm text-slate-500 text-center"> Register with</p>
+            <p className="text-sm text-slate-500 text-center"> Continue with</p>
               <SignInButton />
           </div>
         </div>

@@ -12,6 +12,8 @@ export default function Pet({ params }) {
   const [pets, setPets] = useState([]);
   const [loading, setLoading ] = useState(true);
 
+  //need to either extract pet data from prev call or 
+
   useEffect(() => {
       const fetchPetData = async () => {
         try {

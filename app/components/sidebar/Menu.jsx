@@ -40,9 +40,9 @@ export default function Menu({ title, submenuItems, }) {
         {isSubmenuOpen && hasSubmenu && (
           <ul className="submenuw-full border-b dark:bg-slate-500">
             {submenuItems.map((item) => (
-              <li key={item.name} className="py-1 pl-6 text-black font-semibold text-sm hover:bg-slate-300 dark:hover:bg-slate-700 dark:hover:text-slate-200 cursor-pointer">
+              <li key={item.name} className="w-full py-1 pl-6 text-black font-semibold text-sm hover:bg-slate-300 dark:hover:bg-slate-700 dark:hover:text-slate-200 cursor-pointer">
               {item.link ? (
-               <Link href={item.link} className="w-full">
+               <Link href={item.link}>
                {item.name}
               </Link>
               ) : (
