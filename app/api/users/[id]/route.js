@@ -3,13 +3,12 @@ import { getUserProfile } from "@/utils/auth";
 
 export async function GET(req, {params}) {
   const user = await getUserProfile();
-  const userId = user.id;
-
+  const {id} = params;
   // Fetch user from the public.users table
-  const { data:users, error } = await supabase
+  const { data: users, error } = await supabase
     .from('users')
     .select('*')
-    .eq('id', userId);
+    .eq('id', id);
 
   if (error) {
     return new Response(JSON.stringify({ error: error.message }), {

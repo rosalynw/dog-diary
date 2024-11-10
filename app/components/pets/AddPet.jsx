@@ -52,6 +52,7 @@ export default function AddPet({userId}) {
       if (response.ok) {
         setMessage("Pet profile created!");
         //router.push()
+        e.target.reset();
       } else {
         console.error('Failed tocreated a pet profile:', result);
       }

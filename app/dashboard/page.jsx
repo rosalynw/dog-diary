@@ -1,5 +1,6 @@
 'use client'
 
+import ProtectedPage from "@/app/components/SessionProvider/ProtectedPage";
 import NewReminder from "../components/reminders/NewReminder";
 import ReminderList from "../components/reminders/ReminderList";
 import { supabase } from "@/utils/supabaseClient";
@@ -17,7 +18,7 @@ export default function Home() {
     const data = await response.json();
 
     if (response.ok) {
-      console.log(data.reminders);
+      //console.log(data.reminders);
       setReminders(data.reminders);
     } else {
       console.error('Error fetching reminders:', data.error);
@@ -44,7 +45,7 @@ export default function Home() {
 
       const data = await response.json();
     
-      console.log(data.reminder.start_time);
+      //console.log(data.reminder.start_time);
       setReminders((prevReminders) => [ data.reminder, ...prevReminders]);
     } catch (error) {
       console.error("Error adding new reminder:", error );
@@ -52,16 +53,17 @@ export default function Home() {
   }
 
   return (
-    <div className="h-screen flex">
-        <div className="flex flex-grow justify-center items-center">
-          <div className="flex justify-center flex-col w-full">
-            <div className="flex justify-evenly">
-              < ReminderList reminders={reminders} onAddNewClick={handleAddNewClick}/>
-              {showNewReminder && < NewReminder addReminder={addReminder} onCancel={handleCancelClick}/>}
+    <ProtectedPage>
+      <div className="h-screen flex">
+          <div className="flex flex-grow justify-center items-center">
+            <div className="flex justify-center flex-col w-full">
+              <div className="flex justify-evenly">
+                < ReminderList reminders={reminders} onAddNewClick={handleAddNewClick}/>
+                {showNewReminder && < NewReminder addReminder={addReminder} onCancel={handleCancelClick}/>}
+              </div>
             </div>
-          </div>
+        </div>
       </div>
-
-    </div>
+    </ProtectedPage>
   );
 }

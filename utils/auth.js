@@ -36,7 +36,7 @@ export const signIn = async (email, password) => {
   return data;
 };
 
-export const getUserProfile = async (userId) => {
+export const getUserProfile = async () => {
   const { data: { user }, error } = await supabase.auth.getUser();
 
   if (error) throw error;
@@ -57,7 +57,7 @@ export const resetPassword = async (email) => {
       throw new Error(error.message);
     }
 
-    return "Password reset email sent!";
+    return { data: "Password reset email sent!"};
 }
 
 export const updatePassword = async (newPassword) => {

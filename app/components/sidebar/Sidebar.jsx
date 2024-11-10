@@ -9,6 +9,8 @@ import { supabase } from "@/utils/supabaseClient";
 import useSWR from "swr";
 import fetcher from "@/utils/fetcher";
 import { useState, useEffect } from "react";
+import { getUserProfile } from "@/utils/auth";
+
 
 const pacifico = Pacifico({
   weight: "400",
@@ -20,35 +22,37 @@ const pacifico = Pacifico({
 export default function Sidebar() {
   const [pets, setPets] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
+  const [error, setError] = useState(null); // To handle error state
 
   //const { data: pets, error, isLoading } = useSWR(`/api/pets`, fetcher);
-
+useEffect(() => {
   const retrieveUser = async () => {
     try {
-      const { data: {user}, error } = await supabase.auth.getUser();
+      const user = await getUserProfile();
       if (user) {
-        const response = await fetch(`/api/users/${user.id}`);
+        const response = await fetch(`/api/users?id=${user.id}`);
         const result = await response.json();
         if (error) throw error;
         setProfileImage(result.profile_image);
       }
 
       const petsResponse = await fetch(`/api/pets?user_id=${user.id}`);
-      console.log(petsResponse);
       if (!petsResponse.ok) {
         throw new Error(`Failed to fetch pets: ${petsResponse.statusText}`);
       }
       const petsData = await petsResponse.json();
-      console.log(petsData.pets);
       setPets(petsData.pets);
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
-  useEffect(() => {
     retrieveUser(); // Fetch user on component mount.
   }, []);
+
+  const updatePets = (newPet) => {
+    setPets((prevPets) => [...prevPets, newPet]);
+  };
 
   const ownersMenuItems = [
     { name: 'Emily Johnson'},
