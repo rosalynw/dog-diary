@@ -38,7 +38,7 @@ export default function Pet({ params }) {
     alert("Danger");
   }
 
-  console.log(pets);
+  //console.log(pets);
 
     // State to control the visibility of the Reminder component
     const [showNewReminder, setShowNewReminder] = useState(false);

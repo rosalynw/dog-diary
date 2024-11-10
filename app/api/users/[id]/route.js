@@ -1,13 +1,15 @@
 import { supabase } from "@/utils/supabaseClient";
+import { getUserProfile } from "@/utils/auth";
 
 export async function GET(req, {params}) {
-  const {id} = params;
+  const user = await getUserProfile();
+  const userId = user.id;
 
   // Fetch user from the public.users table
   const { data:users, error } = await supabase
     .from('users')
     .select('*')
-    .eq('id', id);
+    .eq('id', userId);
 
   if (error) {
     return new Response(JSON.stringify({ error: error.message }), {
@@ -19,7 +21,7 @@ export async function GET(req, {params}) {
   }
 
   if (users.length === 0) {
-    console.log(id);
+    console.log(userId);
     console.log(users);
     return new Response(JSON.stringify({ message: 'User not found' }), {
       status: 404,

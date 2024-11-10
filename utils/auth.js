@@ -37,14 +37,10 @@ export const signIn = async (email, password) => {
 };
 
 export const getUserProfile = async (userId) => {
-  const { data, error } = await supabase
-    .from("users")
-    .select("*")
-    .eq("id", userId)
-    .single();
+  const { data: { user }, error } = await supabase.auth.getUser();
 
   if (error) throw error;
-  return data;
+  return user;
 };
 
 

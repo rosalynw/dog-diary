@@ -2,10 +2,12 @@
 
 import { useState } from "react";
 import { resetPassword } from "@/utils/auth";
+import { useRouter } from "next/navigation";
 
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
