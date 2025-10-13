@@ -1,7 +1,11 @@
 import { supabase } from "@/utils/supabaseClient";
 
-
 export const signUp = async (email, password, firstName, lastName) => {
+  email = email.trim().toLowerCase().replace(/['"]+/g, "");
+  password = password.trim();
+  firstName = firstName.trim();
+  lastName = lastName.trim();
+
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
@@ -21,8 +25,19 @@ export const signUp = async (email, password, firstName, lastName) => {
   console.log("User signed up:", data);
 
   const userId = data.user.id;
+  if (data.user) {
+    const { error: insertError } = await supabase
+      .from('users')
+      .upsert([{
+        id: data.user.id,      // use auth user id
+        email: email,
+        first_name: firstName,
+        last_name: lastName
+      }]);
 
-  
+    if (insertError) throw insertError;
+  }
+
   return data;
 };
 
