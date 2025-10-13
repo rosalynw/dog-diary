@@ -132,11 +132,10 @@ export default function SignIn() {
               >
                 {isLogin ? "Not a member? Sign Up" : "Have an account? Login"}
               </button>
-              {message && <p>{message}</p>}
+              {message && <p className="text-red-500">{message}</p>}
             </div>
             <p className="text-sm text-slate-500 text-center">or</p>
             <hr />
-            <p className="text-sm text-slate-500 text-center"> Continue with</p>
               <SignInButton />
           </div>
         </div>
