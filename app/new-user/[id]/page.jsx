@@ -24,6 +24,9 @@ export default function CreateProfile({ params }) {
 
   const { data: users, error, isLoading } = useSWR(`/api/users/${id}`, fetcher);
 
+  console.log("User data:", users);
+  console.log("User id:", id);
+
   useEffect(() => {
     if (users) {
       console.log("Fetched user data:", users);
