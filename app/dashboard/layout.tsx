@@ -1,6 +1,6 @@
 import ProtectedPage from "@/app/components/SessionProvider/ProtectedPage";
 
-import Sidebar from '../components/sidebar/Sidebar'; 
+import Sidebar from '@/app/components/sidebar/Sidebar'; 
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
