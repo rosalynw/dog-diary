@@ -20,8 +20,7 @@ export async function GET(req, {params}) {
   }
 
   if (users.length === 0) {
-    console.log(userId);
-    console.log(users);
+
     return new Response(JSON.stringify({ message: 'User not found' }), {
       status: 404,
       headers: {
