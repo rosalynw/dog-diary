@@ -1,7 +1,7 @@
 'use client'
 
 import NewReminder from '@/app/components/reminders/NewReminder';
-import GoBackButton from '@/app/components/Buttons/GoBackButton';
+import GoBackButton from '@/app/components/buttons/GoBackButton';
 import { camelCaseToReadable } from '@/utils/stringUtils';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
