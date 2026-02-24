@@ -1,5 +1,6 @@
 'use client'
 
+import Image from "next/image";
 import {useState, useRef } from "react";
 export default function ImageUpload({ onFileSelect }) {
   const [imagePreview, setImagePreview] = useState(null);
@@ -30,7 +31,7 @@ export default function ImageUpload({ onFileSelect }) {
         </h3>
         {imagePreview ? (
           <div className="">
-            <img
+            <Image
               className="inline-block h-60 w-60 rounded-full"
               alt="file uploader preview"
               objectFit="cover"

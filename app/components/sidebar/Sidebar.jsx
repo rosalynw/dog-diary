@@ -1,6 +1,5 @@
 'use client'
 
-import DarkMode from "@/components/DarkMode";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Menu from "./Menu";
 import Link from "next/link";
@@ -10,6 +9,7 @@ import useSWR from "swr";
 import fetcher from "@/utils/fetcher";
 import { useState, useEffect } from "react";
 import { getUserProfile } from "@/utils/auth";
+import Image from 'next/image';
 
 
 const pacifico = Pacifico({
@@ -48,7 +48,7 @@ useEffect(() => {
   };
 
     retrieveUser(); // Fetch user on component mount.
-  }, []);
+  }, [error]);
 
   const updatePets = (newPet) => {
     setPets((prevPets) => [...prevPets, newPet]);
@@ -74,11 +74,11 @@ useEffect(() => {
             Dog Diary
           </Link>
           <div className="flex flex-row space-x-5 items-center">
-            <div className=""><DarkMode /></div>
+            
             <Link href="/dashboard/profile">
               <div className="profile-avatar">
                 {profileImage ? (
-                  <img
+                  <Image
                     className="rounded-full max-w-10"  
                     src={profileImage}
                     alt="Profile Image"

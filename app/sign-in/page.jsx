@@ -1,7 +1,6 @@
 "use client";
 
 import { SignInButton } from "@/app/components/buttons/SignInButton";
-import DarkMode from "@/app/components/darkMode/Toggle";
 import { Pacifico } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { useState, useRef } from "react";
@@ -62,7 +61,7 @@ export default function SignIn() {
               Dog Diary
             </h1>
             <h3 className="font-sans text-xl text-center border-t-2 border-white py-10">
-              Store all your pet's info in one place
+              Store all your pet&apos;s info in one place
             </h3>
           </div>
         </div>

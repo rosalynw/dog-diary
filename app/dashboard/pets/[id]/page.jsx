@@ -5,6 +5,7 @@ import GoBackButton from '@/app/components/Buttons/GoBackButton';
 import { camelCaseToReadable } from '@/utils/stringUtils';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Pet({ params }) {
   const router = useRouter();
@@ -61,10 +62,10 @@ export default function Pet({ params }) {
         <div className="container flex flex-col py-6 px-12 space-y-3 w-fit max-w-4xl rounded-lg shadow-lg">
           <div className="flex flex-row space-x-10">
             <div>
-              <img className="inline-block h-24 w-24 rounded-full" src="/images/cat.jpg" width={24} height={24}/>
+              <Image className="inline-block h-24 w-24 rounded-full" src="/images/cat.jpg" width={24} height={24} alt=''/>
             </div>
             {pets.map((pet) => (
-            <div className="grow">
+            <div className="grow" key={pet.id}>
               <h1 className="font-bold text-4xl mb-4">{pet.name}</h1>
               <div className='space-y-2 mb-4'>
               <p className='font-bold'>Owner: {pet.users.first_name} {pet.users.last_name}</p>

@@ -34,7 +34,7 @@ export default function CreatePetProfile() {
     };
 
     checkUser();
-  }, []);
+  }, [router]);
 
   if (!user) {
     return (

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { supabase } from "@/utils/supabaseClient";
 import { getUserProfile } from "@/utils/auth";
 import { SignOutButton } from "@/app/components/buttons/SignOutButton";
+import Image from "next/image";
 
 export default function Profile() {
   const [session, setSession] = useState(null);
@@ -38,7 +39,7 @@ export default function Profile() {
             <div className="flex flex-row space-x-10">
               <>
                 <div>
-                  <img className="inline-block h-24 w-24 rounded-full" src={profileData.profile_image} width={24} height={24}/>
+                  <Image className="inline-block h-24 w-24 rounded-full" src={profileData.profile_image} width={24} height={24} alt=""/>
                 </div>
                 <div className="grow">
                   <h1 className="font-bold text-4xl mb-4">{profileData.first_name} {profileData.last_name}</h1>

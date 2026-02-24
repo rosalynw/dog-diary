@@ -106,7 +106,7 @@ export default function CreateProfile({ params }) {
       <div className="relative flex min-h-screen items-center justify-center">
         <div className="flex flex-col items-center space-x-10 space-y-4">
           <div className="text-regal font-semibold">
-            Let's create your user profile!
+            Let&apos;s create your user profile!
           </div>
           <div className="container flex flex-col py-6 pr-4 pl-4 space-y-3 w-fit max-w-4xl rounded-lg shadow-lg">
             <div className="space-y-4 text-center">
